@@ -1,0 +1,18 @@
+header: 'Статичные данные'
+
+requests:
+  genres:
+    mark: 'T'
+    name: 'Жанры'
+    link: '[GET] https://smashup.ru/static/genres'
+    description: 'Возвращает списком все существующие на сайте жанры.'
+
+    answer: ['рок', 'рэп', 'фолк']
+
+
+  register:
+    name: 'Компиляции'
+    link: '[GET] https://smashup.ru/static/compilations'
+    description: 'Возвращает списком ID плейлистов, которые были помечены как компиляции.'
+
+    answer: [1, 2, 3]

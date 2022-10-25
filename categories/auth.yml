@@ -1,0 +1,33 @@
+header: 'Авторизация и регистрация'
+
+requests:
+  authorization:
+    name: 'Авторизация'
+    link: '[POST] https://smashup.ru/login'
+    description: 'При успешной авторизации устанавливает новое значение куки "token".'
+
+    form:
+      username: 'Admin'
+      password: 'NonHashedPassword'
+      comment: 'Надо подумать над алгоритмом хэширования пароля на клиенте'
+
+    regex:
+      username: '(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{4,32}$)(?!^\d+$)^.+$'
+      password: '[a-zA-Z0-9-_=+()*&^%$#@!]{8,32}'
+
+
+  register:
+    name: 'Регистрация'
+    link: '[POST] https://smashup.ru/register'
+    description: 'При успешной регистрации устанавливает новое значение куки "token".'
+
+    form:
+      username: 'УННВ'
+      email: 'unnv@smashup.ru'
+      password1: 'NonHashedPassword'
+      password2: 'NonHashedPassword'
+      comment: 'Сейчас протокол требует два пароля, но будет переделан на один'
+
+    regex:
+      username: '(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{4,32}$)(?!^\d+$)^.+$'
+      password: '[a-zA-Z0-9-_=+()*&^%$#@!]{8,32}'

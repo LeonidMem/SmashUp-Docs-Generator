@@ -1,0 +1,131 @@
+header: 'Поиск'
+
+requests:
+  tracks:
+    mark: 'T'
+    name: 'Треков'
+    link: '[GET] https://smashup.ru/search/tracks?query=[SEARCH_QUERY]'
+    description: 'Возвращает списком сериализованные треки.'
+
+    request: 'https://smashup.ru/search/tracks?query=Поисковой%20запрос'
+    answer:
+      - id: 83
+        name: 'Интро'
+        author: 'УННВ'
+        imageUrl: '83'
+      - id: 84
+        name: 'Ода под D'
+        author: 'УННВ'
+        imageUrl: '83'
+
+    regex:
+      SEARCH_QUERY: '.+{4,32}'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      400:
+        - Если указан некорректный поисковой запрос
+
+
+  mashups:
+    mark: 'T'
+    name: 'Мэшапов'
+    link: '[GET] https://smashup.ru/search/mashups?query=[SEARCH_QUERY]'
+    description: 'Возвращает списком сериализованные мэашпы.'
+
+    request: 'https://smashup.ru/search/mashups?query=Поисковой%20запросс'
+    answer:
+      - id: 207
+        name: 'Unlike 1.kla$ - Everything Почему'
+        authors: ['CTAK_CO6AK']
+        imageUrl: '207'
+        explicit: true
+        bitrate: 320044
+        streams: 29
+        likes: 4
+        tracks: [5781, 403]
+      - id: 428
+        name: 'everything you MFers talk about is 1.kla$'
+        authors: ['MC Symon']
+        imageUrl: '428'
+        explicit: true
+        bitrate: 128049
+        streams: 21
+        likes: 1
+        tracks: [7303, 402]
+
+    regex:
+      SEARCH_QUERY: '.+{4,32}'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      400:
+        - Если указан некорректный поисковой запрос
+
+
+  playlists:
+    mark: 'T'
+    name: 'Плейлистов'
+    link: '[GET] https://smashup.ru/search/playlists?query=[SEARCH_QUERY]'
+    description: 'Возвращает списком сериализованные плейлисты.'
+
+    request: 'https://smashup.ru/search/playlists?query=Поисковой%20запросс'
+    answer:
+      - id: 206
+        name: 'Все (мои) мэшапы из SoundCloud'
+        owner: 'CnucDx'
+        imageUrl: '61a8f47d24e73d69ef53d1145976f97101d969a1c3cb719ad4a96d21b257949e'
+        streams: 0
+        likes: 0
+        mashups: []
+      - id: 482
+        name: '1.kla$ные мэшапы'
+        owner: 'LeonidM'
+        imageUrl: 'default'
+        streams: 12
+        likes: 1
+        tracks: [138, 136, 228, 227, 207, 191, 190, 185, 123, 124, 125, 126, 117, 287, 262, 311, 417, 415, 353, 451, 511,
+                 479, 486, 132, 399, 463, 535, 585, 448, 469, 601, 611, 538, 584, 694, 772]
+
+    regex:
+      SEARCH_QUERY: '.+{4,32}'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      400:
+        - Если указан некорректный поисковой запрос
+
+
+  users:
+    mark: 'T'
+    name: 'Пользователей'
+    link: '[GET] https://smashup.ru/search/users?query=[SEARCH_QUERY]'
+    description: 'Возвращает списком сериализованных пользователей.'
+
+    request: 'https://smashup.ru/search/users?query=Поисковой%20запросс'
+    answer:
+      - id: 1146
+        username: 'Deephook81'
+        imageUrl: 'default'
+        permissions: 0
+        mashups: []
+        playlists: []
+      - id: 2463
+        username: 'Deep Space Audio'
+        imageUrl: '574dfbca5645bd8927a00617b466d3dcb3b204f85e15fa25e1249a4a86acfe5b'
+        permissions: 76
+        streams: 12
+        mashups: [771, 772]
+        playlists: [123, 235]
+
+    regex:
+      SEARCH_QUERY: '.+{4,32}'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      400:
+        - Если указан некорректный поисковой запрос

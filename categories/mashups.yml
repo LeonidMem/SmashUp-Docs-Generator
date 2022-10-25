@@ -1,0 +1,179 @@
+header: 'Мэшапы'
+
+requests:
+  get:
+    name: 'Получить'
+    link: '[GET] https://smashup.ru/mashup/get?id=[IDS]'
+    description: 'Возвращает списком сериализованные мэшапы.'
+
+    request: 'https://smashup.ru/mashup/get?id=207,428'
+    answer:
+      - id: 207
+        name: 'Unlike 1.kla$ - Everything Почему'
+        authors: ['CTAK_CO6AK']
+        imageUrl: '207'
+        explicit: true
+        bitrate: 320044
+        streams: 29
+        likes: 4
+        tracks: [5781, 403]
+      - id: 428
+        name: 'everything you MFers talk about is 1.kla$'
+        authors: ['MC Symon']
+        imageUrl: '428'
+        explicit: true
+        bitrate: 128049
+        streams: 21
+        likes: 1
+        tracks: [7303, 402]
+
+    regex:
+      IDS: '\d+(?:,\d+){0,}'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      400:
+        - Если некорректно указаны ID
+        - Если хотя бы один из указанных ID не является ID какого-либо мэшапа
+
+
+  get_unpublished:
+    mark: 'M'
+    name: 'Получить неопубликованные'
+    link: '[GET] https://smashup.ru/mashup/get_unpublished'
+    description:
+      - 'Возвращает списком все сериализованные неопубликованные мэшапы.'
+      - '*Будет в будущем немного переработан*.'
+
+    request: 'https://smashup.ru/mashup/get?id=207,428'
+    answer:
+      91:
+        id: 91
+        name: 'Оксимироны из Мадагаскара'
+        owner: 'mileon'
+        imageUrl: '91'
+        genres: ['morph']
+        tracks: [8954, 9559]
+        tracksUrls: ['https://www.youtube.com/watch?v=0VqGcjTA5xg [Уже добавлено под названием "Пингвины Мадагаскара - Титры"]']
+        explicit: false
+      92:
+        id: 92
+        name: 'Винсент боится самолета'
+        owner: 'mileon'
+        imageUrl: '92'
+        genres: ['рок']
+        tracks: [9560, 9561]
+        tracksUrls: ['https://www.youtube.com/watch?v=YXd9GrSvNlw [Уже добавлено под названием "Геннадий Горин - Самолёты"]',
+                     'https://music.yandex.ru/album/88356/track/15387033 [Альбом уже добавлен]']
+        explicit: false
+
+
+  add_stream:
+    mark: 'T'
+    name: 'Добавить прослушивание'
+    link: '[POST] https://smashup.ru/mashup/stream/add?id=[ID]'
+    description: '**`[!]`** Должен быть вызван раз в 15 секунд, иначе прослушивание не будет добавлено.'
+
+    regex:
+      ID: '\d+'
+
+    codes:
+      200:
+        - Если прослушивание добавилось
+      208:
+        - Если менее 15 секунд назад было добавлено другое прослушивание
+      400:
+        - Если указан некорректный ID
+        - Если мэшап с указанным ID не найден
+
+  add_like:
+    mark: 'T'
+    name: 'Добавить лайк'
+    link: '[POST] https://smashup.ru/mashup/like/add?id=[ID]'
+    description: '**`[!]`** В идеале должен быть хоть какой-то таймаут, но время таймаута надо обсудить.'
+
+    regex:
+      ID: '\d+'
+
+    codes:
+      200:
+        - Если лайк добавился или уже был добавлен
+      400:
+        - Если указан некорректный ID
+        - Если мэшап с указанным ID не найден
+
+
+  delete_like:
+    mark: 'T'
+    name: 'Убрать лайк'
+    link: '[POST] https://smashup.ru/mashup/like/delete?id=[ID]'
+
+    regex:
+      ID: '\d+'
+
+    codes:
+      200:
+        - Если лайк убрался или уже был убран
+      400:
+        - Если указан некорректный ID
+        - Если мэшап с указанным ID не найден
+
+
+  upload:
+    mark: 'T'
+    name: 'Отправить мэшап на премодерацию или опубликовать его'
+    link: '[POST] https://smashup.ru/mashup/upload'
+    description:
+      - 'Возвращает сериализованный мэшап, если он был опубликован без премодерации, иначе пустую строку.'
+      - 'Публикует мэшап, если запрос был отправлен верифицированным пользователем или модератором.'
+
+    body:
+      mashupFile: '[Base64 decoded mp3 file]'
+      imageFile: '[Base64 decoded png/jpg file]'
+      mashupName: 'Мэшап без названия'
+      mashupAuthor: 'LeonidM'
+      mashupAuthor__: 'Указывается только в случае, если запрос был отправлен модератором с указанием другого автора'
+      explicit: false
+      genres: ['рок']
+      tracks: [1, 2, 3]
+      tracksUrls: ['https://www.youtube.com/watch?v=CQKxE8nBwSA', 'https://music.yandex.ru/album/6319802/track/46804521']
+      tracksUrls__: 'Доступно только для тех, кто отправляет мэшап на премодерацию, позже будет переделано'
+
+    answer:
+      id: 207
+      name: 'Unlike 1.kla$ - Everything Почему'
+      authors: ['CTAK_CO6AK']
+      imageUrl: '207'
+      explicit: true
+      bitrate: 320044
+      streams: 29
+      likes: 4
+      tracks: [5781, 403]
+
+    regex:
+      'tracksUrls | YouTube': 'https:\/\/www\.youtube\.com\/watch\?v=([-a-zA-Z0-9_]{11})'
+      'tracksUrls | Яндекс.Музыка': 'https:\/\/music\.yandex\.ru\/album\/(\d+)\/track\/(\d+)'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      400:
+        - '[?] Если указан некорректный формат данных либо их вовсе не хватает в теле запроса'
+        - Если указан неизвестный автор в поле "mashupAuthor"
+        - Если мэшап с таким названием уже существует
+        - '[?] Если пользователь, не будучи модератором или верифицированным пользователем, прикрепил меньше 2 треков суммарно в "tracks" и "tracksUrls"'
+        - Если мэшап представлен не .mp3 файлом
+        - Если изображение является прозрачным
+        - Если изображение меньше 800х800 пикселей
+      403:
+        - Если пользователь, который отправил запрос, забанен
+      413:
+        - Если изображение весит больше 5 МБ
+        - Если мэшап весит больше 20 МБ
+      429:
+        - Если пользователь достиг ограничения загрузки в 5 мэшапов в час
+      500:
+        - Если невозможно декодировать изображение
+        - Если произошло какое-то IO исключение при работе с изображением
+        - Если произошла какая-то ошибка при записи мэшапа в базу данных

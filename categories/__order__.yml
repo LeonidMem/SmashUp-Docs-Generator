@@ -1,0 +1,7 @@
+order:
+  - static
+  - auth
+  - recommendations
+  - search
+  - mashups
+  - playlists
