@@ -1,14 +1,42 @@
 ### Общие ссылки:
 * **Поделиться**
-  * Мэшапом: `https://smashup.ru/share/mashup?id=[ID]&sharedBy=[NICKNAME]`
-  * Плейлистом: `https://smashup.ru/share/playlist?id=[ID]&sharedBy=[NICKNAME]`
+  * Мэшапом: `/share/mashup?id=[ID]&sharedBy=[NICKNAME]`
+  * Плейлистом: `/share/playlist?id=[ID]&sharedBy=[NICKNAME]`
+* **Контент**
+  * Получить мэшап: `/uploads/mashup/[ID].mp3?bitrate=[MAX_BITRATE]`
+  * Получить обложку мэшапа: `/uploads/mashup/[ID]_[SIZE].png`
+    * Возможные значения SIZE: `[100x100, 400x400, 800x800]`
+  * Получить обложку плейлиста: `/uploads/playlist/[ID]_[SIZE].png`
+    * Возможные значения SIZE: `[100x100, 400x400, 800x800]`
+  * Получить обложку трека: `/uploads/track/[ID]_[SIZE].png`
+    * Возможные значения SIZE: `[100x100, 400x400, 800x800]`
+  * Получить аватар пользователя: `/uploads/user/[ID]_[SIZE].png`
+    * Возможные значения SIZE: `[100x100, 400x400, 800x800]`
+  * Получить мэшап на премодерации: `/uploads/moderators/mashup/[ID].mp3`
+  * Получить обложку мэшапа на премодерации: `/uploads/moderators/mashup/[ID].png`
+
+---
+
+### Различные константы:
+* **Плейлисты**
+  * "Новинки": `1`
+  * "Чарты | 24 часа": `2`
+  * "Чарты | 7 дней": `3`
+* **Биты настроек и прав пользователей**
+  * Администратор: `0`
+  * Модератор: `1`
+  * Верифицированный пользователь: `2`
+  * Включено проигрывание Explicit треков *(настройка)*: `3`
+  * Пользователь забанен: `4`
+  * Включена мульти-сессия *(настройка)*: `5`
+  * Мэшапер: `6`
 
 ---
 
 ### Метки:
 * **[T]** - нужен токен пользователя *(если он не указан, то всегда возвращается 401 код)*
 * **[М]** - доступен только модераторам и администраторам *(если пользователь не является модератором или администратором, то всегда возвращается 403 код)*
-* **[?]** - причина возвращаемого кода, помеченная этим символом, не будет отправлена в теле ответа
+* **[V]** - доступен только верифицированным пользователям, модераторам и администраторам *(если пользователь не является модератором или администратором, то всегда возвращается 403 код)*
 * Если возвращаемые коды не указаны, то, значит, всегда возвращается **200** *(или 401, если метод помечен как [T]; аналогично с [M])*
 
 ### Запросы:
@@ -16,7 +44,7 @@
 
 * **Статичные данные**:
   * <details>
-      <summary><b>[T]</b> Жанры: <code>[GET] https://smashup.ru/static/genres</code></summary>
+      <summary><b>[T]</b> Жанры: <code>[GET] /static/genres</code></summary>
 
       <br>Возвращает списком все существующие на сайте жанры.
 
@@ -34,7 +62,7 @@
       ---
     </details>
   * <details>
-      <summary>Компиляции: <code>[GET] https://smashup.ru/static/compilations</code></summary>
+      <summary>Компиляции: <code>[GET] /static/compilations</code></summary>
 
       <br>Возвращает списком ID плейлистов, которые были помечены как компиляции.
 
@@ -55,7 +83,7 @@
 
 * **Авторизация и регистрация**:
   * <details>
-      <summary>Авторизация: <code>[POST] https://smashup.ru/login</code></summary>
+      <summary>Авторизация: <code>[POST] /login</code></summary>
 
       <br>При успешной авторизации устанавливает новое значение куки "token".
 
@@ -65,10 +93,19 @@
       ```json
       {
           "username": "Admin",
-          "password": "NonHashedPassword",
-          "comment": "Надо подумать над алгоритмом хэширования пароля на клиенте"
+          "__username__": "Поле username может быть как никнеймом, так и почтой",
+          "password": "NonHashedPassword"
       }
       ```
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если авторизация прошла успешно
+      * `400 Bad Request`
+        * Если отправлена некорректная почта или никнейм
+        * Если пароль не подходит
+      * `404 code_names.404`
+        * Если пользователь с указанными почтой или никнеймом не найден
 
       ---
 
@@ -79,9 +116,9 @@
       ---
     </details>
   * <details>
-      <summary>Регистрация: <code>[POST] https://smashup.ru/register</code></summary>
+      <summary>Регистрация: <code>[POST] /register</code></summary>
 
-      <br>При успешной регистрации устанавливает новое значение куки "token".
+      <br>При успешной регистрации будет отправлено письмо на почту.
 
       ---
 
@@ -90,11 +127,17 @@
       {
           "username": "УННВ",
           "email": "unnv@smashup.ru",
-          "password1": "NonHashedPassword",
-          "password2": "NonHashedPassword",
-          "comment": "Сейчас протокол требует два пароля, но будет переделан на один"
+          "password": "NonHashedPassword"
       }
       ```
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если письмо с подтверждением было отправлено на почту
+      * `400 Bad Request`
+        * Если отправлена некорректная почта, никнейм или пароль
+        * Если пользователь с отправленными почтой или никнеймом уже зарегистрирован
+        * Если письмо подтверждения уже было отправлено
 
       ---
 
@@ -104,11 +147,32 @@
 
       ---
     </details>
+  * <details>
+      <summary>Подтверждение регистрации: <code>[POST] /register_confirm?id=[ID]</code></summary>
+
+      <br>При успешной авторизации устанавливает новое значение куки "token".
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если пользователь был зарегистрирован
+      * `404 code_names.404`
+        * Если подтверждение регистрации с указанными ID не найдено
+      * `500 Internal Server Error`
+        * Если произошла ошибка при создании пользователя
+
+      ---
+
+      **[ID] RegEx**: `{UUID RegEx}`
+
+      ---
+    </details>
 
 
 * **Рекомендации**:
   * <details>
-      <summary><b>[T]</b> v1: <code>[GET] https://smashup.ru/recommendations/v1</code></summary>
+      <summary><b>[T]</b> v1: <code>[GET] /recommendations/v1</code></summary>
 
       <br>Возвращает списком ID рекомендованных мэшапов.
 
@@ -136,7 +200,7 @@
 
 * **Поиск**:
   * <details>
-      <summary><b>[T]</b> Треков: <code>[GET] https://smashup.ru/search/tracks?query=[SEARCH_QUERY]</code></summary>
+      <summary><b>[T]</b> Треков: <code>[GET] /search/tracks?query=[SEARCH_QUERY]</code></summary>
 
       <br>Возвращает списком сериализованные треки.
 
@@ -150,7 +214,7 @@
 
       ---
 
-      **Пример запроса:** `https://smashup.ru/search/tracks?query=Поисковой%20запрос`
+      **Пример запроса:** `/search/tracks?query=Поисковой%20запрос`
 
       **Пример ответа:**
       ```json
@@ -177,7 +241,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Мэшапов: <code>[GET] https://smashup.ru/search/mashups?query=[SEARCH_QUERY]</code></summary>
+      <summary><b>[T]</b> Мэшапов: <code>[GET] /search/mashups?query=[SEARCH_QUERY]</code></summary>
 
       <br>Возвращает списком сериализованные мэашпы.
 
@@ -191,7 +255,7 @@
 
       ---
 
-      **Пример запроса:** `https://smashup.ru/search/mashups?query=Поисковой%20запросс`
+      **Пример запроса:** `/search/mashups?query=Поисковой%20запросс`
 
       **Пример ответа:**
       ```json
@@ -238,7 +302,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Плейлистов: <code>[GET] https://smashup.ru/search/playlists?query=[SEARCH_QUERY]</code></summary>
+      <summary><b>[T]</b> Плейлистов: <code>[GET] /search/playlists?query=[SEARCH_QUERY]</code></summary>
 
       <br>Возвращает списком сериализованные плейлисты.
 
@@ -252,7 +316,7 @@
 
       ---
 
-      **Пример запроса:** `https://smashup.ru/search/playlists?query=Поисковой%20запросс`
+      **Пример запроса:** `/search/playlists?query=Поисковой%20запросс`
 
       **Пример ответа:**
       ```json
@@ -322,7 +386,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Пользователей: <code>[GET] https://smashup.ru/search/users?query=[SEARCH_QUERY]</code></summary>
+      <summary><b>[T]</b> Пользователей: <code>[GET] /search/users?query=[SEARCH_QUERY]</code></summary>
 
       <br>Возвращает списком сериализованных пользователей.
 
@@ -336,7 +400,7 @@
 
       ---
 
-      **Пример запроса:** `https://smashup.ru/search/users?query=Поисковой%20запросс`
+      **Пример запроса:** `/search/users?query=Поисковой%20запросс`
 
       **Пример ответа:**
       ```json
@@ -377,7 +441,7 @@
 
 * **Мэшапы**:
   * <details>
-      <summary>Получить: <code>[GET] https://smashup.ru/mashup/get?id=[IDS]</code></summary>
+      <summary>Получить: <code>[GET] /mashup/get?id=[IDS]</code></summary>
 
       <br>Возвращает списком сериализованные мэшапы.
 
@@ -392,7 +456,7 @@
 
       ---
 
-      **Пример запроса:** `https://smashup.ru/mashup/get?id=207,428`
+      **Пример запроса:** `/mashup/get?id=207,428`
 
       **Пример ответа:**
       ```json
@@ -439,7 +503,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[M]</b> Получить неопубликованные: <code>[GET] https://smashup.ru/mashup/get_unpublished</code></summary>
+      <summary><b>[M]</b> Получить неопубликованные: <code>[GET] /mashup/get_unpublished</code></summary>
 
       <br>Возвращает списком все сериализованные неопубликованные мэшапы.
 
@@ -447,7 +511,7 @@
 
       ---
 
-      **Пример запроса:** `https://smashup.ru/mashup/get?id=207,428`
+      **Пример запроса:** `/mashup/get?id=207,428`
 
       **Пример ответа:**
       ```json
@@ -493,7 +557,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Добавить прослушивание: <code>[POST] https://smashup.ru/mashup/stream/add?id=[ID]</code></summary>
+      <summary><b>[T]</b> Добавить прослушивание: <code>[POST] /mashup/stream/add?id=[ID]</code></summary>
 
       <br>**`[!]`** Должен быть вызван раз в 15 секунд, иначе прослушивание не будет добавлено.
 
@@ -515,7 +579,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Добавить лайк: <code>[POST] https://smashup.ru/mashup/like/add?id=[ID]</code></summary>
+      <summary><b>[T]</b> Добавить лайк: <code>[POST] /mashup/like/add?id=[ID]</code></summary>
 
       <br>**`[!]`** В идеале должен быть хоть какой-то таймаут, но время таймаута надо обсудить.
 
@@ -535,7 +599,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Убрать лайк: <code>[POST] https://smashup.ru/mashup/like/delete?id=[ID]</code></summary>
+      <summary><b>[T]</b> Убрать лайк: <code>[POST] /mashup/like/delete?id=[ID]</code></summary>
 
       <br>
 
@@ -555,7 +619,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Отправить мэшап на премодерацию или опубликовать его: <code>[POST] https://smashup.ru/mashup/upload</code></summary>
+      <summary><b>[T]</b> Отправить мэшап на премодерацию или опубликовать его: <code>[POST] /mashup/upload</code></summary>
 
       <br>Возвращает сериализованный мэшап, если он был опубликован без премодерации, иначе пустую строку.
 
@@ -567,10 +631,10 @@
       * `200 OK`
         * Если всё хорошо и слава тебе, Господи
       * `400 Bad Request`
-        * [?] Если указан некорректный формат данных либо их вовсе не хватает в теле запроса
+        * Если указан некорректный формат данных либо их вовсе не хватает в теле запроса
         * Если указан неизвестный автор в поле "mashupAuthor"
         * Если мэшап с таким названием уже существует
-        * [?] Если пользователь, не будучи модератором или верифицированным пользователем, прикрепил меньше 2 треков суммарно в "tracks" и "tracksUrls"
+        * Если пользователь, не будучи модератором или верифицированным пользователем, прикрепил меньше 2 треков суммарно в "tracks" и "tracksUrls"
         * Если мэшап представлен не .mp3 файлом
         * Если изображение является прозрачным
         * Если изображение меньше 800х800 пикселей
@@ -635,9 +699,13 @@
 
       ---
 
-      **[tracksUrls | YouTube] RegEx**: `https:\/\/www\.youtube\.com\/watch\?v=([-a-zA-Z0-9_]{11})`
+      **[mashupName] RegEx**: `^[а-яА-ЯёЁa-zA-Z0-9_\$.,=+()*&^%$#@!\-?':\| ]{2,48}$`
 
-      **[tracksUrls | Яндекс.Музыка] RegEx**: `https:\/\/music\.yandex\.ru\/album\/(\d+)\/track\/(\d+)`
+      **[mashupAuthor] RegEx**: `(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{4,32}$)(?!^\d+$)^.+$`
+
+      **[tracksUrls | YouTube] RegEx**: `https://www\.youtube\.com/watch\?v=([-a-zA-Z0-9_]{11})`
+
+      **[tracksUrls | Яндекс.Музыка] RegEx**: `https://music\.yandex\.ru/album/(\d+)/track/(\d+)`
 
       ---
     </details>
@@ -645,7 +713,7 @@
 
 * **Плейлисты**:
   * <details>
-      <summary>Получить: <code>[GET] https://smashup.ru/playlist/get?id=[IDS]</code></summary>
+      <summary>Получить: <code>[GET] /playlist/get?id=[IDS]</code></summary>
 
       <br>Возвращает списком сериализованные плейлисты.
 
@@ -660,7 +728,7 @@
 
       ---
 
-      **Пример запроса:** `https://smashup.ru/playlist/get?id=689,964`
+      **Пример запроса:** `/playlist/get?id=689,964`
 
       **Пример ответа:**
       ```json
@@ -707,7 +775,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Создать: <code>[GET] https://smashup.ru/playlist/create</code></summary>
+      <summary><b>[T]</b> Создать: <code>[GET] /playlist/create</code></summary>
 
       <br>В случае успешного создания плейлиста, возвращает его в сериализованном виде, иначе пустую строку.
 
@@ -740,7 +808,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Удалить: <code>[GET] https://smashup.ru/playlist/delete?id=[ID]</code></summary>
+      <summary><b>[T]</b> Удалить: <code>[GET] /playlist/delete?id=[ID]</code></summary>
 
       <br>
 
@@ -762,7 +830,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Изменить: <code>[POST] https://smashup.ru/mashup/edit</code></summary>
+      <summary><b>[T]</b> Изменить: <code>[POST] /mashup/edit</code></summary>
 
       <br>
 
@@ -772,9 +840,9 @@
       * `200 OK`
         * Если всё хорошо и слава тебе, Господи
       * `400 Bad Request`
-        * [?] Если указан некорректный ID
+        * Если указан некорректный ID
         * Если плейлист с указанным ID не существует
-        * [?] Если указан некорректный формат данных в теле запроса
+        * Если указан некорректный формат данных в теле запроса
         * Если указанное название не соответствует регулярному выражению
         * Если изображение является прозрачным
         * Если изображение меньше 800х800 пикселей
@@ -784,7 +852,7 @@
         * Если изображение весит больше 5 МБ
       * `500 Internal Server Error`
         * Если невозможно декодировать изображение
-        * [?] Если произошло какое-то IO исключение при работе с изображением
+        * Если произошло какое-то IO исключение при работе с изображением
 
       ---
 
@@ -807,14 +875,16 @@
 
       ---
 
-      **[tracksUrls | YouTube] RegEx**: `https:\/\/www\.youtube\.com\/watch\?v=([-a-zA-Z0-9_]{11})`
+      **[playlistName] RegEx**: `^[а-яА-ЯёЁa-zA-Z0-9_\$.,=+()*&^%$#@!\-?':\| ]{4,48}$`
 
-      **[tracksUrls | Яндекс.Музыка] RegEx**: `https:\/\/music\.yandex\.ru\/album\/(\d+)\/track\/(\d+)`
+      **[tracksUrls | YouTube] RegEx**: `https://www\.youtube\.com/watch\?v=([-a-zA-Z0-9_]{11})`
+
+      **[tracksUrls | Яндекс.Музыка] RegEx**: `https://music\.yandex\.ru/album/(\d+)/track/(\d+)`
 
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Добавить мэшап: <code>[POST] https://smashup.ru/playlist/add_mashup?playlistId=[PID]&id=[ID]</code></summary>
+      <summary><b>[T]</b> Добавить мэшап: <code>[POST] /playlist/add_mashup?playlistId=[PID]&id=[ID]</code></summary>
 
       <br>
 
@@ -841,7 +911,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Удалить мэшап: <code>[POST] https://smashup.ru/playlist/remove_mashup?playlistId=[PID]&id=[ID]</code></summary>
+      <summary><b>[T]</b> Удалить мэшап: <code>[POST] /playlist/remove_mashup?playlistId=[PID]&id=[ID]</code></summary>
 
       <br>
 
@@ -867,7 +937,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Добавить прослушивание: <code>[POST] https://smashup.ru/playlists/stream/add?id=[ID]</code></summary>
+      <summary><b>[T]</b> Добавить прослушивание: <code>[POST] /playlists/stream/add?id=[ID]</code></summary>
 
       <br>**`[!]`** Должен быть вызван раз в 60 секунд, иначе прослушивание не будет добавлено.
 
@@ -889,7 +959,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Добавить лайк: <code>[POST] https://smashup.ru/playlist/like/add?id=[ID]</code></summary>
+      <summary><b>[T]</b> Добавить лайк: <code>[POST] /playlist/like/add?id=[ID]</code></summary>
 
       <br>**`[!]`** В идеале должен быть хоть какой-то таймаут, но время таймаута надо обсудить.
 
@@ -900,7 +970,7 @@
         * Если лайк добавился или уже был добавлен
       * `400 Bad Request`
         * Если указан некорректный ID
-        * Если плейлисат с указанным ID не найден
+        * Если плейлист с указанным ID не найден
 
       ---
 
@@ -909,7 +979,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Убрать лайк: <code>[POST] https://smashup.ru/playlist/like/delete?id=[ID]</code></summary>
+      <summary><b>[T]</b> Убрать лайк: <code>[POST] /playlist/like/delete?id=[ID]</code></summary>
 
       <br>
 
@@ -925,6 +995,406 @@
       ---
 
       **[ID] RegEx**: `\d+`
+
+      ---
+    </details>
+
+
+* **Треки**:
+  * <details>
+      <summary>Получить: <code>[GET] /track/get?id=[IDS]</code></summary>
+
+      <br>Возвращает списком сериализованные треки.
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `400 Bad Request`
+        * Если некорректно указаны ID
+        * Если хотя бы один из указанных ID не является ID какого-либо трека
+
+      ---
+
+      **Пример запроса:** `/mashup/get?id=1,400`
+
+      **Пример ответа:**
+      ```json
+      [
+          {
+              "id": 1,
+              "name": "Я ПЫЛЬ",
+              "owner": "MORGENSHTERN",
+              "imageUrl": "1"
+          },
+          {
+              "id": 400,
+              "name": "Спортивные очки",
+              "owner": "Буерак",
+              "imageUrl": "398"
+          }
+      ]
+      ```
+
+      ---
+
+      **[IDS] RegEx**: `\d+(?:,\d+){0,}`
+
+      ---
+    </details>
+  * <details>
+      <summary>Получить популярные мэшапы с этим треком: <code>[GET] /track/get_popular_mashups?id=[ID]</code></summary>
+
+      <br>Возвращает списком все сериализованные мэшапы *(максимум 25)*, отсортированные по прослушиваниям.
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `400 Bad Request`
+        * Если указан некорректный ID
+
+      ---
+
+      **Пример запроса:** `/track/get_popular_mashups/get?id=248`
+
+      **Пример ответа:**
+      ```json
+      [
+          {
+              "id": 26,
+              "name": "不要离开院子",
+              "owner": "ДЖКБ",
+              "imageUrl": "26",
+              "explicit": false,
+              "bitrate": 320000,
+              "streams": 208,
+              "likes": 35,
+              "tracks": [
+                  904,
+                  248
+              ]
+          },
+          {
+              "id": 166,
+              "name": "ДОРАДУЛО",
+              "owner": "Илья Муррка",
+              "imageUrl": "166",
+              "explicit": false,
+              "bitrate": 192004,
+              "streams": 202,
+              "likes": 40,
+              "tracks": [
+                  52,
+                  272,
+                  248
+              ]
+          }
+      ]
+      ```
+
+      ---
+
+      **[ID] RegEx**: `\d+`
+
+      ---
+    </details>
+  * <details>
+      <summary>Получить случайные мэшапы с этим треком: <code>[GET] /track/get_popular_mashups?id=[ID]</code></summary>
+
+      <br>Возвращает списком в случайном порядке сериализованные мэшапы *(максимум 25)*.
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `400 Bad Request`
+        * Если указан некорректный ID
+
+      ---
+
+      **Пример запроса:** `/mashup/get?id=248`
+
+      **Пример ответа:**
+      ```json
+      [
+          {
+              "id": 166,
+              "name": "ДОРАДУЛО",
+              "owner": "Илья Муррка",
+              "imageUrl": "166",
+              "explicit": false,
+              "bitrate": 192004,
+              "streams": 202,
+              "likes": 40,
+              "tracks": [
+                  52,
+                  272,
+                  248
+              ]
+          },
+          {
+              "id": 26,
+              "name": "不要离开院子",
+              "owner": "ДЖКБ",
+              "imageUrl": "26",
+              "explicit": false,
+              "bitrate": 320000,
+              "streams": 208,
+              "likes": 35,
+              "tracks": [
+                  904,
+                  248
+              ]
+          }
+      ]
+      ```
+
+      ---
+
+      **[ID] RegEx**: `\d+`
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[V]</b> Опубликовать трек с YouTube: <code>[POST] /track/upload</code></summary>
+
+      <br>Прямо сейчас загружать треки с YouTube'а могут только модераторы
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `400 Bad Request`
+        * Если указан некорректный формат данных либо их вовсе не хватает в теле запроса
+        * Если уже загружен трек по указанной ссылкой
+        * Если изображение является прозрачным
+        * Если изображение меньше 800х800 пикселей
+      * `403 Forbidden`
+        * Если пользователь, который отправил запрос, забанен
+      * `413 Payload Too Large`
+        * Если изображение весит больше 5 МБ
+        * Если мэшап весит больше 20 МБ
+      * `500 Internal Server Error`
+        * Если невозможно декодировать изображение
+        * Если произошло какое-то IO исключение при работе с изображением
+        * Если произошла какая-то ошибка при записи трека в базу данных
+
+      ---
+
+      **Пример тела зароса:**
+      ```json
+      {
+          "trackName": "Japan",
+          "trackAuthor": "Aphex Twin",
+          "link": "https://www.youtube.com/watch?v=S7c_OYURKss",
+          "imageFile": "[Base64 decoded png/jpg file]"
+      }
+      ```
+
+      ---
+
+      **[trackName] RegEx**: `^[а-яА-ЯёЁa-zA-Z0-9_\$.,=+()*&^%$#@!\-?':\| ]{1,64}$`
+
+      **[trackAuthor] RegEx**: `^[а-яА-ЯёЁa-zA-Z0-9_\$.,=+()*&^%$#@!\-?':\| ]{1,64}$`
+
+      **[link] RegEx**: `https:\/\/www\\.youtube\\.com\/watch\\?v=([-a-zA-Z0-9_]{11})`
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[V]</b> Запарсить альбом с Яндекс.Музыки: <code>[POST] /track/list_album?link=[LINK]</code></summary>
+
+      <br>
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `400 Bad Request`
+        * Если указана некорректная ссылка
+        * Если уже загружен трек по указанной ссылкой
+        * Если изображение является прозрачным
+        * Если изображение меньше 800х800 пикселей
+      * `403 Forbidden`
+        * Если пользователь, который отправил запрос, забанен
+      * `413 Payload Too Large`
+        * Если изображение весит больше 5 МБ
+        * Если мэшап весит больше 20 МБ
+      * `500 Internal Server Error`
+        * Если невозможно декодировать изображение
+        * Если произошло какое-то IO исключение при работе с изображением
+        * Если произошла какая-то ошибка при записи трека в базу данных
+
+      ---
+
+      **Пример запроса:** `/track/list_album?link=https://music.yandex.ru/album/3453403`
+
+      **Пример ответа:**
+      ```json
+      {
+          "imageLink": "https://avatars.yandex.net/get-music-content/28589/00051503.a.3453403-1/800x800",
+          "tracks": [
+              {
+                  "author": "Aphex Twin",
+                  "name": "Digeridoo"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Flaphead"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Phloam"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Isoprophlex Aka Isopropanol"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Polynomial-C"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Tamphex Hedphuq Mix"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Phlange Phace"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Dodeccaheedron"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Analogue Bubblebath"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Metapharstic"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "We Have Arrived Aphex Twin QQT Mix"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "We Have Arrived Aphex Twin TTQ Mix"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Digeridoo Live in Cornwall, 1990"
+              }
+          ]
+      }
+      ```
+
+      ---
+
+      **[link] RegEx**: `https:\/\/music\.yandex\.ru\/album\/(\d+)`
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[V]</b> Загрузить альбом с Яндекс.Музыки: <code>[POST] /track/upload_tracks?link=[LINK]</code></summary>
+
+      <br>
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `400 Bad Request`
+        * Если указана некорректная ссылка
+        * Если уже загружен трек по указанной ссылкой
+        * Если изображение является прозрачным
+        * Если изображение меньше 800х800 пикселей
+      * `403 Forbidden`
+        * Если пользователь, который отправил запрос, забанен
+      * `413 Payload Too Large`
+        * Если изображение весит больше 5 МБ
+        * Если мэшап весит больше 20 МБ
+      * `500 Internal Server Error`
+        * Если невозможно декодировать изображение
+        * Если произошло какое-то IO исключение при работе с изображением
+        * Если произошла какая-то ошибка при записи трека в базу данных
+
+      ---
+
+      **Пример запроса:** `/track/list_album?link=https://music.yandex.ru/album/3453403`
+
+      **Пример ответа:**
+      ```json
+      {
+          "imageLink": "https://avatars.yandex.net/get-music-content/28589/00051503.a.3453403-1/800x800",
+          "tracks": [
+              {
+                  "author": "Aphex Twin",
+                  "name": "Digeridoo"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Flaphead"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Phloam"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Isoprophlex Aka Isopropanol"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Polynomial-C"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Tamphex Hedphuq Mix"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Phlange Phace"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Dodeccaheedron"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Analogue Bubblebath"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Metapharstic"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "We Have Arrived Aphex Twin QQT Mix"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "We Have Arrived Aphex Twin TTQ Mix"
+              },
+              {
+                  "author": "Aphex Twin",
+                  "name": "Digeridoo Live in Cornwall, 1990"
+              }
+          ]
+      }
+      ```
+
+      ---
+
+      **[link] RegEx**: `https:\/\/music\.yandex\.ru\/album\/(\d+)`
 
       ---
     </details>

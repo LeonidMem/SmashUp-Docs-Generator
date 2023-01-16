@@ -3,10 +3,10 @@ header: 'Мэшапы'
 requests:
   get:
     name: 'Получить'
-    link: '[GET] https://smashup.ru/mashup/get?id=[IDS]'
+    link: '[GET] /mashup/get?id=[IDS]'
     description: 'Возвращает списком сериализованные мэшапы.'
 
-    request: 'https://smashup.ru/mashup/get?id=207,428'
+    request: '/mashup/get?id=207,428'
     answer:
       - id: 207
         name: 'Unlike 1.kla$ - Everything Почему'
@@ -41,12 +41,12 @@ requests:
   get_unpublished:
     mark: 'M'
     name: 'Получить неопубликованные'
-    link: '[GET] https://smashup.ru/mashup/get_unpublished'
+    link: '[GET] /mashup/get_unpublished'
     description:
       - 'Возвращает списком все сериализованные неопубликованные мэшапы.'
       - '*Будет в будущем немного переработан*.'
 
-    request: 'https://smashup.ru/mashup/get?id=207,428'
+    request: '/mashup/get?id=207,428'
     answer:
       91:
         id: 91
@@ -72,7 +72,7 @@ requests:
   add_stream:
     mark: 'T'
     name: 'Добавить прослушивание'
-    link: '[POST] https://smashup.ru/mashup/stream/add?id=[ID]'
+    link: '[POST] /mashup/stream/add?id=[ID]'
     description: '**`[!]`** Должен быть вызван раз в 15 секунд, иначе прослушивание не будет добавлено.'
 
     regex:
@@ -90,7 +90,7 @@ requests:
   add_like:
     mark: 'T'
     name: 'Добавить лайк'
-    link: '[POST] https://smashup.ru/mashup/like/add?id=[ID]'
+    link: '[POST] /mashup/like/add?id=[ID]'
     description: '**`[!]`** В идеале должен быть хоть какой-то таймаут, но время таймаута надо обсудить.'
 
     regex:
@@ -107,7 +107,7 @@ requests:
   delete_like:
     mark: 'T'
     name: 'Убрать лайк'
-    link: '[POST] https://smashup.ru/mashup/like/delete?id=[ID]'
+    link: '[POST] /mashup/like/delete?id=[ID]'
 
     regex:
       ID: '\d+'
@@ -123,7 +123,7 @@ requests:
   upload:
     mark: 'T'
     name: 'Отправить мэшап на премодерацию или опубликовать его'
-    link: '[POST] https://smashup.ru/mashup/upload'
+    link: '[POST] /mashup/upload'
     description:
       - 'Возвращает сериализованный мэшап, если он был опубликован без премодерации, иначе пустую строку.'
       - 'Публикует мэшап, если запрос был отправлен верифицированным пользователем или модератором.'
@@ -152,17 +152,19 @@ requests:
       tracks: [5781, 403]
 
     regex:
-      'tracksUrls | YouTube': 'https:\/\/www\.youtube\.com\/watch\?v=([-a-zA-Z0-9_]{11})'
-      'tracksUrls | Яндекс.Музыка': 'https:\/\/music\.yandex\.ru\/album\/(\d+)\/track\/(\d+)'
+      mashupName: "^[а-яА-ЯёЁa-zA-Z0-9_\\$.,=+()*&^%$#@!\\-?':\\| ]{2,48}$"
+      mashupAuthor: "(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{4,32}$)(?!^\\d+$)^.+$"
+      'tracksUrls | YouTube': 'https://www\.youtube\.com/watch\?v=([-a-zA-Z0-9_]{11})'
+      'tracksUrls | Яндекс.Музыка': 'https://music\.yandex\.ru/album/(\d+)/track/(\d+)'
 
     codes:
       200:
         - Если всё хорошо и слава тебе, Господи
       400:
-        - '[?] Если указан некорректный формат данных либо их вовсе не хватает в теле запроса'
+        - Если указан некорректный формат данных либо их вовсе не хватает в теле запроса
         - Если указан неизвестный автор в поле "mashupAuthor"
         - Если мэшап с таким названием уже существует
-        - '[?] Если пользователь, не будучи модератором или верифицированным пользователем, прикрепил меньше 2 треков суммарно в "tracks" и "tracksUrls"'
+        - Если пользователь, не будучи модератором или верифицированным пользователем, прикрепил меньше 2 треков суммарно в "tracks" и "tracksUrls"
         - Если мэшап представлен не .mp3 файлом
         - Если изображение является прозрачным
         - Если изображение меньше 800х800 пикселей

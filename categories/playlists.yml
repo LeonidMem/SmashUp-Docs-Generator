@@ -3,10 +3,10 @@ header: 'Плейлисты'
 requests:
   get:
     name: 'Получить'
-    link: '[GET] https://smashup.ru/playlist/get?id=[IDS]'
+    link: '[GET] /playlist/get?id=[IDS]'
     description: 'Возвращает списком сериализованные плейлисты.'
 
-    request: 'https://smashup.ru/playlist/get?id=689,964'
+    request: '/playlist/get?id=689,964'
     answer:
       - id: 689
         name: 'Пылесосен'
@@ -39,7 +39,7 @@ requests:
   create:
     mark: 'T'
     name: 'Создать'
-    link: '[GET] https://smashup.ru/playlist/create'
+    link: '[GET] /playlist/create'
     description: 'В случае успешного создания плейлиста, возвращает его в сериализованном виде, иначе пустую строку.'
 
     answer:
@@ -64,7 +64,7 @@ requests:
   delete:
     mark: 'T'
     name: 'Удалить'
-    link: '[GET] https://smashup.ru/playlist/delete?id=[ID]'
+    link: '[GET] /playlist/delete?id=[ID]'
 
     regex:
       ID: '\d+'
@@ -82,7 +82,7 @@ requests:
   edit:
     mark: 'T'
     name: 'Изменить'
-    link: '[POST] https://smashup.ru/mashup/edit'
+    link: '[POST] /mashup/edit'
 
     body:
       playlistName: 'Новый плейлист'
@@ -94,16 +94,17 @@ requests:
       imageUrl: '61a8f47d24e73d69ef53d1145976f97101d969a1c3cb719ad4a96d21b257949e'
 
     regex:
-      'tracksUrls | YouTube': 'https:\/\/www\.youtube\.com\/watch\?v=([-a-zA-Z0-9_]{11})'
-      'tracksUrls | Яндекс.Музыка': 'https:\/\/music\.yandex\.ru\/album\/(\d+)\/track\/(\d+)'
+      playlistName: "^[а-яА-ЯёЁa-zA-Z0-9_\\$.,=+()*&^%$#@!\\-?':\\| ]{4,48}$"
+      'tracksUrls | YouTube': 'https://www\.youtube\.com/watch\?v=([-a-zA-Z0-9_]{11})'
+      'tracksUrls | Яндекс.Музыка': 'https://music\.yandex\.ru/album/(\d+)/track/(\d+)'
 
     codes:
       200:
         - Если всё хорошо и слава тебе, Господи
       400:
-        - '[?] Если указан некорректный ID'
+        - Если указан некорректный ID
         - Если плейлист с указанным ID не существует
-        - '[?] Если указан некорректный формат данных в теле запроса'
+        - Если указан некорректный формат данных в теле запроса
         - Если указанное название не соответствует регулярному выражению
         - Если изображение является прозрачным
         - Если изображение меньше 800х800 пикселей
@@ -113,13 +114,13 @@ requests:
         - Если изображение весит больше 5 МБ
       500:
         - Если невозможно декодировать изображение
-        - '[?] Если произошло какое-то IO исключение при работе с изображением'
+        - Если произошло какое-то IO исключение при работе с изображением
 
 
   add_mashup:
     mark: 'T'
     name: 'Добавить мэшап'
-    link: '[POST] https://smashup.ru/playlist/add_mashup?playlistId=[PID]&id=[ID]'
+    link: '[POST] /playlist/add_mashup?playlistId=[PID]&id=[ID]'
 
     regex:
       PID: '\d+'
@@ -141,7 +142,7 @@ requests:
   remove_mashup:
     mark: 'T'
     name: 'Удалить мэшап'
-    link: '[POST] https://smashup.ru/playlist/remove_mashup?playlistId=[PID]&id=[ID]'
+    link: '[POST] /playlist/remove_mashup?playlistId=[PID]&id=[ID]'
 
     regex:
       PID: '\d+'
@@ -162,7 +163,7 @@ requests:
   add_stream:
     mark: 'T'
     name: 'Добавить прослушивание'
-    link: '[POST] https://smashup.ru/playlists/stream/add?id=[ID]'
+    link: '[POST] /playlists/stream/add?id=[ID]'
     description: '**`[!]`** Должен быть вызван раз в 60 секунд, иначе прослушивание не будет добавлено.'
 
     regex:
@@ -180,7 +181,7 @@ requests:
   add_like:
     mark: 'T'
     name: 'Добавить лайк'
-    link: '[POST] https://smashup.ru/playlist/like/add?id=[ID]'
+    link: '[POST] /playlist/like/add?id=[ID]'
     description: '**`[!]`** В идеале должен быть хоть какой-то таймаут, но время таймаута надо обсудить.'
 
     regex:
@@ -191,13 +192,13 @@ requests:
         - Если лайк добавился или уже был добавлен
       400:
         - Если указан некорректный ID
-        - Если плейлисат с указанным ID не найден
+        - Если плейлист с указанным ID не найден
 
 
   delete_like:
     mark: 'T'
     name: 'Убрать лайк'
-    link: '[POST] https://smashup.ru/playlist/like/delete?id=[ID]'
+    link: '[POST] /playlist/like/delete?id=[ID]'
 
     regex:
       ID: '\d+'

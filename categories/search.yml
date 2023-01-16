@@ -4,10 +4,10 @@ requests:
   tracks:
     mark: 'T'
     name: 'Треков'
-    link: '[GET] https://smashup.ru/search/tracks?query=[SEARCH_QUERY]'
+    link: '[GET] /search/tracks?query=[SEARCH_QUERY]'
     description: 'Возвращает списком сериализованные треки.'
 
-    request: 'https://smashup.ru/search/tracks?query=Поисковой%20запрос'
+    request: '/search/tracks?query=Поисковой%20запрос'
     answer:
       - id: 83
         name: 'Интро'
@@ -31,10 +31,10 @@ requests:
   mashups:
     mark: 'T'
     name: 'Мэшапов'
-    link: '[GET] https://smashup.ru/search/mashups?query=[SEARCH_QUERY]'
+    link: '[GET] /search/mashups?query=[SEARCH_QUERY]'
     description: 'Возвращает списком сериализованные мэашпы.'
 
-    request: 'https://smashup.ru/search/mashups?query=Поисковой%20запросс'
+    request: '/search/mashups?query=Поисковой%20запросс'
     answer:
       - id: 207
         name: 'Unlike 1.kla$ - Everything Почему'
@@ -68,10 +68,10 @@ requests:
   playlists:
     mark: 'T'
     name: 'Плейлистов'
-    link: '[GET] https://smashup.ru/search/playlists?query=[SEARCH_QUERY]'
+    link: '[GET] /search/playlists?query=[SEARCH_QUERY]'
     description: 'Возвращает списком сериализованные плейлисты.'
 
-    request: 'https://smashup.ru/search/playlists?query=Поисковой%20запросс'
+    request: '/search/playlists?query=Поисковой%20запросс'
     answer:
       - id: 206
         name: 'Все (мои) мэшапы из SoundCloud'
@@ -102,10 +102,10 @@ requests:
   users:
     mark: 'T'
     name: 'Пользователей'
-    link: '[GET] https://smashup.ru/search/users?query=[SEARCH_QUERY]'
+    link: '[GET] /search/users?query=[SEARCH_QUERY]'
     description: 'Возвращает списком сериализованных пользователей.'
 
-    request: 'https://smashup.ru/search/users?query=Поисковой%20запросс'
+    request: '/search/users?query=Поисковой%20запросс'
     answer:
       - id: 1146
         username: 'Deephook81'
