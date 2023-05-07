@@ -1,8 +1,9 @@
 order:
-  - static
+#  - static
   - auth
-  - recommendations
-  - search
+  - user
+#  - recommendations
   - mashups
   - playlists
   - tracks
+  - search

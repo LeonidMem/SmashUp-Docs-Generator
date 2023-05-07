@@ -7,7 +7,7 @@ requests:
     link: '[GET] /static/genres'
     description: 'Возвращает списком все существующие на сайте жанры.'
 
-    answer: ['рок', 'рэп', 'фолк']
+    response: ['рок', 'рэп', 'фолк']
 
 
   register:
@@ -15,4 +15,4 @@ requests:
     link: '[GET] /static/compilations'
     description: 'Возвращает списком ID плейлистов, которые были помечены как компиляции.'
 
-    answer: [1, 2, 3]
+    response: [1, 2, 3]

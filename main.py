@@ -89,11 +89,11 @@ with open('generated.md', 'w', encoding='utf8') as out:
                     out.write('\n      ```\n\n')
                     line_separator_written = False
 
-                # Answer
-                answer = request.get('answer')
-                if answer is not None:
+                # Response
+                response = request.get('response')
+                if response is not None:
                     out.write('      **Пример ответа:**\n      ```json\n      ')
-                    out.write(json.dumps(answer, indent=4, ensure_ascii=False).replace('\n', '\n      '))
+                    out.write(json.dumps(response, indent=4, ensure_ascii=False).replace('\n', '\n      '))
                     out.write('\n      ```\n\n')
                     line_separator_written = False
 
@@ -104,6 +104,14 @@ with open('generated.md', 'w', encoding='utf8') as out:
                         out.write('      ---\n\n')
                     for key, value in regex.items():
                         out.write(f'      **[{key}] RegEx**: `{value}`\n\n')
+                    line_separator_written = False
+
+                # Contract
+                contract = request.get('contract')
+                if contract is not None:
+                    if not line_separator_written:
+                        out.write('      ---\n\n')
+                    out.write(f'      **Контракт:**: `{contract}`\n\n')
 
                 out.write('      ---\n    </details>\n')
 

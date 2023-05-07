@@ -1,0 +1,63 @@
+header: 'Пользователи'
+
+requests:
+  get:
+    name: 'Получить'
+    link: '[GET] /user/get?id=[ID] *или* /user/get?username=[USERNAME]'
+    description: 'Возвращает сериализованного пользователя.'
+
+    request: '/user/get?id=1'
+    response:
+      - id: 1
+        username: 'SmashUp'
+        imageUrl: '1'
+        permissions: 1
+
+    regex:
+      ID: '\d+'
+      USERNAME: '(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{4,32}$)(?!^\d+$)^.+$'
+
+    contract: '(id == null) != (username == null)'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      400:
+        - Если нарушен контракт
+        - Если некорректно указан ID или USERNAME
+      404:
+        - Если пользователь с указанным ID или USERNAME не был найден
+
+
+  get_settings:
+    mark: 'T'
+    name: 'Получить настройки'
+    link: '[GET] /user/get_settings'
+    description: 'Возвращает настройки пользователя, сделавшего этот запрос.'
+
+    request: '/user/get_settings'
+    response:
+      - settings: 1
+
+
+  change_settings:
+    mark: 'T'
+    name: 'Изменить настройки'
+    link: '[GET] /user/change_setting?bit=[BIT]&value=[VALUE]'
+    description: 'Изменяет настройки пользователя, сделавшего этот запрос, и возвращает новое значение бит-маски.'
+
+    request: '/user/get_settings'
+    response:
+      - settings: 1
+
+    regex:
+      BIT: '\d+'
+      VALUE: '0|1'
+
+    codes:
+      200:
+        - Если настройка была изменена
+      304:
+        - Если настройка уже имела нужное значение
+      404:
+        - Если настройка с указанным битом не найдена
