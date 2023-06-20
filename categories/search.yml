@@ -5,9 +5,9 @@ requests:
     mark: 'T'
     name: 'Треков'
     link: '[GET] /track/search?query=[SEARCH_QUERY]'
-    description: 'Возвращает списком сериализованные треки.'
+    description: 'Возвращает списком сериализованные треки, максимум 25.'
 
-    request: '/search/tracks?query=Поисковой%20запрос'
+    request: '/track/search?query=Поисковой%20запрос'
     response:
       - id: 83
         name: 'Интро'
@@ -34,13 +34,14 @@ requests:
     mark: 'T'
     name: 'Мэшапов'
     link: '[GET] /mashup/search?query=[SEARCH_QUERY]'
-    description: 'Возвращает списком сериализованные мэшапы.'
+    description: 'Возвращает списком сериализованные мэшапы, максимум 25.'
 
-    request: '/search/mashups?query=1.kla$'
+    request: '/mashup/search?query=1.kla$'
     response:
       - id: 207
         name: 'Unlike 1.kla$ - Everything Почему'
         authors: ['CTAK_CO6AK']
+        genres: ['рэп']
         tracks: [5781, 403]
         imageUrl: '207'
         statuses: 1
@@ -52,6 +53,7 @@ requests:
       - id: 428
         name: 'everything you MFers talk about is 1.kla$'
         authors: ['MC Symon']
+        genres: ['рэп']
         tracks: [7303, 402]
         imageUrl: '428'
         statuses: 1
@@ -75,9 +77,9 @@ requests:
     mark: 'T'
     name: 'Плейлистов'
     link: '[GET] /playlist/search?query=[SEARCH_QUERY]'
-    description: 'Возвращает списком сериализованные плейлисты.'
+    description: 'Возвращает списком сериализованные плейлисты, максимум 25.'
 
-    request: '/search/playlists?query=мэшапы'
+    request: '/playlist/search?query=мэшапы'
     response:
       - id: 206
         name: 'Все (мои) мэшапы из SoundCloud'
@@ -111,7 +113,7 @@ requests:
     mark: 'T'
     name: 'Пользователей'
     link: '[GET] /user/search?query=[SEARCH_QUERY]'
-    description: 'Возвращает списком сериализованных пользователей.'
+    description: 'Возвращает списком сериализованных пользователей, максимум 25.'
 
     request: '/user/search?query=Deep'
     response:

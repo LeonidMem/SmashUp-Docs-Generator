@@ -3,9 +3,12 @@ import json
 
 code_names = {
     '200': 'OK',
+    '202': 'Accepted',
     '208': 'Already reported',
+    '304': 'Not Modified',
     '400': 'Bad Request',
     '403': 'Forbidden',
+    '404': 'Not Found',
     '413': 'Payload Too Large',
     '429': 'Too Many Requests',
     '500': 'Internal Server Error'
@@ -84,7 +87,7 @@ with open('generated.md', 'w', encoding='utf8') as out:
                 # Body
                 body = request.get('body')
                 if body is not None:
-                    out.write('      **Пример тела зароса:**\n      ```json\n      ')
+                    out.write('      **Пример тела запроса:**\n      ```json\n      ')
                     out.write(json.dumps(body, indent=4, ensure_ascii=False).replace('\n', '\n      '))
                     out.write('\n      ```\n\n')
                     line_separator_written = False

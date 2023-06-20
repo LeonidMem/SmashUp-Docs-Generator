@@ -6,7 +6,7 @@ requests:
     link: '[GET] /track/get?id=[IDS]'
     description: 'Возвращает списком сериализованные треки.'
 
-    request: '/mashup/get?id=1,400'
+    request: '/track/get?id=1,400'
     response:
       - id: 1
         name: 'Я ПЫЛЬ'

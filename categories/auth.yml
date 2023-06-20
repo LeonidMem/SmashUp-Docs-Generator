@@ -4,12 +4,18 @@ requests:
   authorization:
     name: 'Авторизация'
     link: '[POST] /login'
-    description: 'При успешной авторизации устанавливает новое значение куки "token".'
+    description: 'Поле `username` может быть как никнеймом, так и почтой.'
 
     body:
       username: 'Admin'
-      __username__: 'Поле username может быть как никнеймом, так и почтой'
       password: 'NonHashedPassword'
+
+    response:
+      id: 1
+      username: 'SmashUp'
+      imageUrl: 'default'
+      permissions: 7
+      token: 'd404f899-eac6-4355-a651-1a8daef84550'
 
     regex:
       username: '(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{4,32}$)(?!^\d+$)^.+$'
@@ -29,12 +35,19 @@ requests:
     name: 'Регистрация'
     link: '[POST] /register'
 #    description: 'При успешной регистрации будет отправлено письмо на почту.'
-    description: '**[ТЕСТ]** Письмо на почту не отправляется. Коды неактуальны и необновлены.'
+    description: '**[ТЕСТ]** Письмо на почту не отправляется. Коды неактуальны и не обновлены. Ответ актуален только для теста'
 
     body:
       username: 'УННВ'
       email: 'unnv@smashup.ru'
       password: 'NonHashedPassword'
+
+    response:
+      id: 1
+      username: 'SmashUp'
+      imageUrl: 'default'
+      permissions: 7
+      token: 'd404f899-eac6-4355-a651-1a8daef84550'
 
     regex:
       username: '(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{4,32}$)(?!^\d+$)^.+$'
