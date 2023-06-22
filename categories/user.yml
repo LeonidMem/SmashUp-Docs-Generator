@@ -3,7 +3,7 @@ header: 'Пользователи'
 requests:
   get:
     name: 'Получить'
-    link: '[GET] /user/get?id=[ID] *или* /user/get?username=[USERNAME]'
+    link: '[GET] /user/get?id=[ID] *или* /user/get?username=[USERNAME] *или* /user/get?token=[TOKEN]'
     description: 'Возвращает сериализованного пользователя.'
 
     request: '/user/get?id=1'
@@ -16,17 +16,18 @@ requests:
     regex:
       ID: '\d+'
       USERNAME: '(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{4,32}$)(?!^\d+$)^.+$'
+      TOKEN: '[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}'
 
-    contract: '(id == null) != (username == null)'
+    contract: 'Only one of parameters (id, username, token) must be specified'
 
     codes:
       200:
         - Если всё хорошо и слава тебе, Господи
       400:
         - Если нарушен контракт
-        - Если некорректно указан ID или USERNAME
+        - Если некорректно указан ID, USERNAME или TOKEN
       404:
-        - Если пользователь с указанным ID или USERNAME не был найден
+        - Если пользователь с указанным ID, USERNAME или TOKEN не был найден
 
 
   get_settings:
