@@ -1,0 +1,51 @@
+header: 'Уведомления'
+
+requests:
+  get:
+    mark: 'T'
+    name: 'Получить'
+    link: '[GET] /notification/get'
+    description: 'Возвращает списком сериализованные уведомления.'
+
+    response:
+      - id: 1
+        imageUrl: '/uploads/mashup/100_100x100'
+        meta:
+          type: 'CONFIRM_CO_AUTHORSHIP'
+          mashupId: 100
+      - id: 2
+        imageUrl: '/uploads/mashup/default_100x100'
+        meta:
+          type: 'MASHUP_STATUS'
+          mashupName: 'Username — Мега-мэшап'
+          published: false
+          reason: 'Оффбит'
+
+  interact:
+    mark: 'T'
+    name: 'Взаимодействовать'
+    link: '[POST] /notification/interact?id=[ID]'
+    description:
+      - 'Взаимодействует с уведомлениями. Отправляется вместе с [BODY], которое зависит от уведомления.'
+      - 'Уведомления, с которыми можно взаимодействовать:'
+      - '* `CONFIRM_CO_AUTHORSHIP` | Пример [BODY] — `{"accepted":true}`'
+
+    regex:
+      ID: '\d+'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      400:
+        - Если указан некорректный ID или BODY
+        - Если с указанным уведомлением нельзя взаимодействовать
+      404:
+        - Если уведомление с указанным ID не найден
+
+  delete:
+    mark: 'T'
+    name: 'Удалить'
+    link: '[POST] /notification/delete?id=[ID]'
+
+    regex:
+      ID: '\d+'
