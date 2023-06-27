@@ -4,16 +4,27 @@ requests:
   edit_unpublished_mashup:
     mark: 'M'
     name: 'Изменить неопубликованный мэшап'
-    link: '[POST] /moderate/edit_mashup'
+    link: '[POST] /moderation/edit_unpublished_mashup'
     description:
-      - '`statuses` — список статусов в виде строк, в данный момент доступны следующие:'
-      - '* `EXPLICIT` — присутствует ненормативная лексика'
-      - '* `MASHUP` — мэшап был опубликован в #mashup'
-      - '* `ALT` — мэшап был опубликован в \[alt]'
-      - 'Значения остальных полей JSON можно найти в `Мэшапы -> Отправить мэшап на премодерацию или опубликовать его`.'
+      - 'Возвращает сериализованный неопубликованный мэшап.'
+      - '*`statuses` — список статусов в виде строк, в данный момент доступны следующие:'
+      - '  * `EXPLICIT` — присутствует ненормативная лексика'
+      - '  * `MASHUP` — мэшап был опубликован в #mashup'
+      - '  * `ALT` — мэшап был опубликован в \[alt]'
+      - '* Значения остальных полей JSON можно найти в `Мэшапы -> Отправить мэшап на премодерацию или опубликовать его`.'
 
     body:
       id: 1
+      name: 'Мэшап без названия'
+      authors: [1, 2]
+      statuses: ['MASHUP', 'EXPLICIT']
+      albumId: -1
+      tracks: [1, 2, 3]
+      tracksUrls: ['https://www.youtube.com/watch?v=CQKxE8nBwSA', 'https://music.yandex.ru/album/6319802/track/46804521']
+      statusesUrls: ['https://vk.com/mashup?w=wall-39786657_711087']
+      genres: ['рок']
+
+    response:
       name: 'Мэшап без названия'
       authors: [1, 2]
       statuses: ['MASHUP', 'EXPLICIT']
@@ -39,7 +50,7 @@ requests:
   publish_unpublished_mashup:
     mark: 'M'
     name: 'Публикация неопубликованного мэшапа'
-    link: '[POST] /moderate/publish_mashup?id=[ID]'
+    link: '[POST] /moderation/publish_mashup?id=[ID]'
     description: 'Возвращает сериализованный мэшап.'
 
     regex:
@@ -48,9 +59,9 @@ requests:
     response:
       id: 207
       name: 'Unlike 1.kla$ - Everything Почему'
-      authors: [ 'CTAK_CO6AK' ]
-      genres: [ 'рэп' ]
-      tracks: [ 5781, 403 ]
+      authors: ['CTAK_CO6AK']
+      genres: ['рэп']
+      tracks: [5781, 403]
       imageUrl: '207'
       statuses: 1
       albumId: -1
@@ -68,3 +79,12 @@ requests:
         - Если указан некорректный формат данных, либо их вовсе не хватает в теле запроса
       404:
         - Если неопубликованный мэшап с указанным ID не был найден
+
+  reject_unpublished_mashup:
+    mark: 'M'
+    name: 'Отклонить неопубликованный мэшап'
+    link: '[POST] /moderation/reject_mashup'
+
+    body:
+      id: 1
+      reason: 'Оффбит'
