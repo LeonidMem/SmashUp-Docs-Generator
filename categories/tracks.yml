@@ -12,11 +12,13 @@ requests:
         name: 'Я ПЫЛЬ'
         authors: ['MORGENSHTERN']
         imageUrl: '1'
+        backgroundColor: 16777215
         link: 'https://music.yandex.ru/album/9647864/'
       - id: 400
         name: 'Спортивные очки'
         authors: ['Буерак']
         imageUrl: '398'
+        backgroundColor: 16777215
         link: 'https://music.yandex.ru/album/5512081/'
 
     regex:
@@ -29,6 +31,60 @@ requests:
         - Если некорректно указаны ID
         - Если хотя бы один из указанных ID не является ID какого-либо трека
 
+  upload_yandex_music:
+    mark: 'V'
+    name: 'Опубликовать с Яндекс.Музыки'
+    link: '[GET] /track/upload/yandex_music?albumId=[ID]'
+    description: 'Возвращает списком сериализованные треки.'
+
+    request: '/track/upload/yandex_music?id=4712222'
+    response:
+      - id: 1
+        name: 'Я ПЫЛЬ'
+        authors: ['MORGENSHTERN']
+        imageUrl: '1'
+        backgroundColor: 16777215
+        link: 'https://music.yandex.ru/album/9647864/'
+      - id: 400
+        name: 'Спортивные очки'
+        authors: ['Буерак']
+        imageUrl: '398'
+        backgroundColor: 16777215
+        link: 'https://music.yandex.ru/album/5512081/'
+
+    regex:
+      ID: '\d+'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      202:
+        - Если мэшап был добавлен в базу данных, но что-то пошло не так при сохранении изображении или мэшапа
+      400:
+        - Если некорректно указан ID
+      404:
+        - Если альбом с указанным ID не найден в Яндекс.Музыке
+      409:
+        - Если указанный альбом уже есть в базе данных
+
+  upload_youtube_video:
+    mark: 'V'
+    name: 'Опубликовать с видео YouTube'
+    link: '[GET] /track/upload/youtube/video'
+    description: 'Возвращает сериализованный трек.'
+
+    body:
+      videoId: 'dQw4w9WgXcQ'
+      authors: ['Rick Astley']
+      name: 'Never Gonna Give You Up'
+
+    response:
+      id: 10000
+      name: 'Never Gonna Give You Up'
+      authors: ['Rick Astley']
+      imageUrl: '10000'
+      backgroundColor: 16777215
+      link: 'https://youtube.com/watch?v=dQw4w9WgXcQ'
 
 #  get_popular_mashups:
 #    name: 'Получить популярные мэшапы с этим треком'
@@ -100,157 +156,3 @@ requests:
 #        - Если всё хорошо и слава тебе, Господи
 #      400:
 #        - Если указан некорректный ID
-
-
-#  upload:
-#    mark: 'V'
-#    name: 'Опубликовать трек с YouTube'
-#    link: '[POST] /track/upload'
-#    description: 'Прямо сейчас загружать треки с YouTube''а могут только модераторы'
-#
-#    body:
-#      trackName: 'Japan'
-#      trackAuthor: 'Aphex Twin'
-#      link: 'https://www.youtube.com/watch?v=S7c_OYURKss'
-#      imageFile: '[Base64 decoded png/jpg file]'
-#
-#    regex:
-#      trackName: "^[а-яА-ЯёЁa-zA-Z0-9_\\$.,=+()*&^%$#@!\\-?':\\| ]{1,64}$"
-#      trackAuthor: "^[а-яА-ЯёЁa-zA-Z0-9_\\$.,=+()*&^%$#@!\\-?':\\| ]{1,64}$"
-#      link: 'https:\/\/www\\.youtube\\.com\/watch\\?v=([-a-zA-Z0-9_]{11})'
-#
-#    codes:
-#      200:
-#        - Если всё хорошо и слава тебе, Господи
-#      400:
-#        - Если указан некорректный формат данных, либо их вовсе не хватает в теле запроса
-#        - Если уже загружен трек по указанной ссылкой
-#        - Если изображение является прозрачным
-#        - Если изображение меньше 800х800 пикселей
-#      403:
-#        - Если пользователь, который отправил запрос, забанен
-#      413:
-#        - Если изображение весит больше 5 МБ
-#        - Если мэшап весит больше 20 МБ
-#      500:
-#        - Если невозможно декодировать изображение
-#        - Если произошло какое-то IO исключение при работе с изображением
-#        - Если произошла какая-то ошибка при записи трека в базу данных
-
-
-#  list_album:
-#    mark: 'V'
-#    name: 'Запарсить альбом с Яндекс.Музыки'
-#    link: '[POST] /track/list_album?link=[LINK]'
-#
-#    request: '/track/list_album?link=https://music.yandex.ru/album/3453403'
-#
-#    response:
-#      imageLink: 'https://avatars.yandex.net/get-music-content/28589/00051503.a.3453403-1/800x800'
-#      tracks:
-#        - author: 'Aphex Twin'
-#          name: 'Digeridoo'
-#        - author: 'Aphex Twin'
-#          name: 'Flaphead'
-#        - author: 'Aphex Twin'
-#          name: 'Phloam'
-#        - author: 'Aphex Twin'
-#          name: 'Isoprophlex Aka Isopropanol'
-#        - author: 'Aphex Twin'
-#          name: 'Polynomial-C'
-#        - author: 'Aphex Twin'
-#          name: 'Tamphex Hedphuq Mix'
-#        - author: 'Aphex Twin'
-#          name: 'Phlange Phace'
-#        - author: 'Aphex Twin'
-#          name: 'Dodeccaheedron'
-#        - author: 'Aphex Twin'
-#          name: 'Analogue Bubblebath'
-#        - author: 'Aphex Twin'
-#          name: 'Metapharstic'
-#        - author: 'Aphex Twin'
-#          name: 'We Have Arrived Aphex Twin QQT Mix'
-#        - author: 'Aphex Twin'
-#          name: 'We Have Arrived Aphex Twin TTQ Mix'
-#        - author: 'Aphex Twin'
-#          name: 'Digeridoo Live in Cornwall, 1990'
-#
-#    regex:
-#      link: 'https:\/\/music\.yandex\.ru\/album\/(\d+)'
-#
-#    codes:
-#      200:
-#        - Если всё хорошо и слава тебе, Господи
-#      400:
-#        - Если указана некорректная ссылка
-#        - Если уже загружен трек по указанной ссылкой
-#        - Если изображение является прозрачным
-#        - Если изображение меньше 800х800 пикселей
-#      403:
-#        - Если пользователь, который отправил запрос, забанен
-#      413:
-#        - Если изображение весит больше 5 МБ
-#        - Если мэшап весит больше 20 МБ
-#      500:
-#        - Если невозможно декодировать изображение
-#        - Если произошло какое-то IO исключение при работе с изображением
-#        - Если произошла какая-то ошибка при записи трека в базу данных
-#
-#
-#  upload_tracks:
-#    mark: 'V'
-#    name: 'Загрузить альбом с Яндекс.Музыки'
-#    link: '[POST] /track/upload_tracks?link=[LINK]'
-#
-#    request: '/track/list_album?link=https://music.yandex.ru/album/3453403'
-#
-#    response:
-#      imageLink: 'https://avatars.yandex.net/get-music-content/28589/00051503.a.3453403-1/800x800'
-#      tracks:
-#        - author: 'Aphex Twin'
-#          name: 'Digeridoo'
-#        - author: 'Aphex Twin'
-#          name: 'Flaphead'
-#        - author: 'Aphex Twin'
-#          name: 'Phloam'
-#        - author: 'Aphex Twin'
-#          name: 'Isoprophlex Aka Isopropanol'
-#        - author: 'Aphex Twin'
-#          name: 'Polynomial-C'
-#        - author: 'Aphex Twin'
-#          name: 'Tamphex Hedphuq Mix'
-#        - author: 'Aphex Twin'
-#          name: 'Phlange Phace'
-#        - author: 'Aphex Twin'
-#          name: 'Dodeccaheedron'
-#        - author: 'Aphex Twin'
-#          name: 'Analogue Bubblebath'
-#        - author: 'Aphex Twin'
-#          name: 'Metapharstic'
-#        - author: 'Aphex Twin'
-#          name: 'We Have Arrived Aphex Twin QQT Mix'
-#        - author: 'Aphex Twin'
-#          name: 'We Have Arrived Aphex Twin TTQ Mix'
-#        - author: 'Aphex Twin'
-#          name: 'Digeridoo Live in Cornwall, 1990'
-#
-#    regex:
-#      link: 'https:\/\/music\.yandex\.ru\/album\/(\d+)'
-#
-#    codes:
-#      200:
-#        - Если всё хорошо и слава тебе, Господи
-#      400:
-#        - Если указана некорректная ссылка
-#        - Если уже загружен трек по указанной ссылкой
-#        - Если изображение является прозрачным
-#        - Если изображение меньше 800х800 пикселей
-#      403:
-#        - Если пользователь, который отправил запрос, забанен
-#      413:
-#        - Если изображение весит больше 5 МБ
-#        - Если мэшап весит больше 20 МБ
-#      500:
-#        - Если невозможно декодировать изображение
-#        - Если произошло какое-то IO исключение при работе с изображением
-#        - Если произошла какая-то ошибка при записи трека в базу данных

@@ -16,6 +16,7 @@ requests:
         genres: ['рэп']
         tracks: [5781, 403]
         imageUrl: '207'
+        backgroundColor: 16777215
         statuses: 1
         albumId: -1
         likes: 4
@@ -28,6 +29,7 @@ requests:
         genres: ['рэп']
         tracks: [7303, 402]
         imageUrl: '428'
+        backgroundColor: 16777215
         statuses: 1
         albumId: -1
         likes: 1

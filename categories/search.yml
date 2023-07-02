@@ -13,11 +13,13 @@ requests:
         name: 'Интро'
         authors: ['УННВ']
         imageUrl: '83'
+        backgroundColor: 16777215
         link: 'https://music.yandex.ru/album/6983656/'
       - id: 84
         name: 'Ода под D'
         authors: ['УННВ']
         imageUrl: '83'
+        backgroundColor: 16777215
         link: 'https://music.yandex.ru/album/6983656/'
 
     regex:
@@ -44,6 +46,7 @@ requests:
         genres: ['рэп']
         tracks: [5781, 403]
         imageUrl: '207'
+        backgroundColor: 16777215
         statuses: 1
         albumId: -1
         likes: 4
@@ -56,6 +59,7 @@ requests:
         genres: ['рэп']
         tracks: [7303, 402]
         imageUrl: '428'
+        backgroundColor: 16777215
         statuses: 1
         albumId: -1
         likes: 1
@@ -86,6 +90,7 @@ requests:
         description: ''
         authors: ['CnucDx']
         imageUrl: '206'
+        backgroundColor: 16777215
         mashups: []
         likes: 0
         streams: 0
@@ -94,6 +99,7 @@ requests:
         description: ''
         authors: ['LeonidM']
         imageUrl: 'default'
+        backgroundColor: 16777215
         mashups: [138, 136, 228, 227, 207, 191, 190, 185, 123, 124, 125, 126, 117, 287, 262, 311, 417, 415, 353, 451, 511,
                   479, 486, 132, 399, 463, 535, 585, 448, 469, 601, 611, 538, 584, 694, 772]
         likes: 1
@@ -120,10 +126,12 @@ requests:
       - id: 1146
         username: 'Deephook81'
         imageUrl: 'default'
+        backgroundColor: 16777215
         permissions: 0
       - id: 2463
         username: 'Deep Space Audio'
         imageUrl: '2463'
+        backgroundColor: 16777215
         permissions: 76
 
     regex:

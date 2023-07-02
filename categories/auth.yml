@@ -14,6 +14,7 @@ requests:
       id: 1
       username: 'SmashUp'
       imageUrl: 'default'
+      backgroundColor: 16777215
       permissions: 7
       token: 'd404f899-eac6-4355-a651-1a8daef84550'
 
@@ -46,6 +47,7 @@ requests:
       id: 1
       username: 'SmashUp'
       imageUrl: 'default'
+      backgroundColor: 16777215
       permissions: 7
       token: 'd404f899-eac6-4355-a651-1a8daef84550'
 

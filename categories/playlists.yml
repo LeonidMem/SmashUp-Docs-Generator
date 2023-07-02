@@ -13,6 +13,7 @@ requests:
         description: ''
         authors: ['LeonidM']
         imageUrl: 'default'
+        backgroundColor: 16777215
         type: 'playlist'
         mashups: [340, 648]
         likes: 0
@@ -22,6 +23,7 @@ requests:
         description: ''
         authors: ['LeonidM']
         imageUrl: '964'
+        backgroundColor: 16777215
         mashups: [368, 509, 156, 114, 591, 377, 144, 376]
         likes: 1
         streams: 7
@@ -56,6 +58,7 @@ requests:
       description: 'Какое-то описание'
       authors: ['LeonidM']
       imageUrl: '100'
+      backgroundColor: 16777215
       mashups: []
       likes: 0
       streams: 0

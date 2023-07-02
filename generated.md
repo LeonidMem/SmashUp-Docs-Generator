@@ -151,6 +151,7 @@
           "id": 1,
           "username": "SmashUp",
           "imageUrl": "default",
+          "backgroundColor": 16777215,
           "permissions": 7,
           "token": "d404f899-eac6-4355-a651-1a8daef84550"
       }
@@ -196,6 +197,7 @@
           "id": 1,
           "username": "SmashUp",
           "imageUrl": "default",
+          "backgroundColor": 16777215,
           "permissions": 7,
           "token": "d404f899-eac6-4355-a651-1a8daef84550"
       }
@@ -239,6 +241,7 @@
               "id": 1,
               "username": "SmashUp",
               "imageUrl": "1",
+              "backgroundColor": 16777215,
               "permissions": 1
           }
       ]
@@ -351,6 +354,7 @@
                   403
               ],
               "imageUrl": "207",
+              "backgroundColor": 16777215,
               "statuses": 1,
               "albumId": -1,
               "likes": 4,
@@ -372,6 +376,7 @@
                   402
               ],
               "imageUrl": "428",
+              "backgroundColor": 16777215,
               "statuses": 1,
               "albumId": -1,
               "likes": 1,
@@ -600,6 +605,7 @@
                   "LeonidM"
               ],
               "imageUrl": "default",
+              "backgroundColor": 16777215,
               "type": "playlist",
               "mashups": [
                   340,
@@ -616,6 +622,7 @@
                   "LeonidM"
               ],
               "imageUrl": "964",
+              "backgroundColor": 16777215,
               "mashups": [
                   368,
                   509,
@@ -675,6 +682,7 @@
               "LeonidM"
           ],
           "imageUrl": "100",
+          "backgroundColor": 16777215,
           "mashups": [],
           "likes": 0,
           "streams": 0
@@ -862,6 +870,7 @@
                   "MORGENSHTERN"
               ],
               "imageUrl": "1",
+              "backgroundColor": 16777215,
               "link": "https://music.yandex.ru/album/9647864/"
           },
           {
@@ -871,6 +880,7 @@
                   "Буерак"
               ],
               "imageUrl": "398",
+              "backgroundColor": 16777215,
               "link": "https://music.yandex.ru/album/5512081/"
           }
       ]
@@ -879,6 +889,95 @@
       ---
 
       **[IDS] RegEx**: `\d+(?:,\d+){1,100}`
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[V]</b> Опубликовать с Яндекс.Музыки: <code>[GET] /track/upload/yandex_music?albumId=[ID]</code></summary>
+
+      <br>Возвращает списком сериализованные треки.
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `202 Accepted`
+        * Если мэшап был добавлен в базу данных, но что-то пошло не так при сохранении изображении или мэшапа
+      * `400 Bad Request`
+        * Если некорректно указан ID
+      * `404 Not Found`
+        * Если альбом с указанным ID не найден в Яндекс.Музыке
+      * `409 Conflict`
+        * Если указанный альбом уже есть в базе данных
+
+      ---
+
+      **Пример запроса:** `/track/upload/yandex_music?id=4712222`
+
+      **Пример ответа:**
+      ```json
+      [
+          {
+              "id": 1,
+              "name": "Я ПЫЛЬ",
+              "authors": [
+                  "MORGENSHTERN"
+              ],
+              "imageUrl": "1",
+              "backgroundColor": 16777215,
+              "link": "https://music.yandex.ru/album/9647864/"
+          },
+          {
+              "id": 400,
+              "name": "Спортивные очки",
+              "authors": [
+                  "Буерак"
+              ],
+              "imageUrl": "398",
+              "backgroundColor": 16777215,
+              "link": "https://music.yandex.ru/album/5512081/"
+          }
+      ]
+      ```
+
+      ---
+
+      **[ID] RegEx**: `\d+`
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[V]</b> Опубликовать с видео YouTube: <code>[GET] /track/upload/youtube/video</code></summary>
+
+      <br>Возвращает сериализованный трек.
+
+      ---
+
+      **Пример тела запроса:**
+      ```json
+      {
+          "videoId": "dQw4w9WgXcQ",
+          "authors": [
+              "Rick Astley"
+          ],
+          "name": "Never Gonna Give You Up"
+      }
+      ```
+
+      **Пример ответа:**
+      ```json
+      {
+          "id": 10000,
+          "name": "Never Gonna Give You Up",
+          "authors": [
+              "Rick Astley"
+          ],
+          "imageUrl": "10000",
+          "backgroundColor": 16777215,
+          "link": "https://youtube.com/watch?v=dQw4w9WgXcQ"
+      }
+      ```
 
       ---
     </details>
@@ -912,6 +1011,7 @@
                   "УННВ"
               ],
               "imageUrl": "83",
+              "backgroundColor": 16777215,
               "link": "https://music.yandex.ru/album/6983656/"
           },
           {
@@ -921,6 +1021,7 @@
                   "УННВ"
               ],
               "imageUrl": "83",
+              "backgroundColor": 16777215,
               "link": "https://music.yandex.ru/album/6983656/"
           }
       ]
@@ -966,6 +1067,7 @@
                   403
               ],
               "imageUrl": "207",
+              "backgroundColor": 16777215,
               "statuses": 1,
               "albumId": -1,
               "likes": 4,
@@ -987,6 +1089,7 @@
                   402
               ],
               "imageUrl": "428",
+              "backgroundColor": 16777215,
               "statuses": 1,
               "albumId": -1,
               "likes": 1,
@@ -1031,6 +1134,7 @@
                   "CnucDx"
               ],
               "imageUrl": "206",
+              "backgroundColor": 16777215,
               "mashups": [],
               "likes": 0,
               "streams": 0
@@ -1043,6 +1147,7 @@
                   "LeonidM"
               ],
               "imageUrl": "default",
+              "backgroundColor": 16777215,
               "mashups": [
                   138,
                   136,
@@ -1117,12 +1222,14 @@
               "id": 1146,
               "username": "Deephook81",
               "imageUrl": "default",
+              "backgroundColor": 16777215,
               "permissions": 0
           },
           {
               "id": 2463,
               "username": "Deep Space Audio",
               "imageUrl": "2463",
+              "backgroundColor": 16777215,
               "permissions": 76
           }
       ]
@@ -1272,6 +1379,7 @@
               403
           ],
           "imageUrl": "207",
+          "backgroundColor": 16777215,
           "statuses": 1,
           "albumId": -1,
           "likes": 4,
