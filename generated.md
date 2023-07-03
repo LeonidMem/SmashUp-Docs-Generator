@@ -386,6 +386,17 @@
       }
       ```
 
+      **Пример ответа:**
+      ```json
+      {
+          "id": 1,
+          "username": "SmashUp",
+          "imageUrl": "1",
+          "backgroundColor": 16777215,
+          "permissions": 1
+      }
+      ```
+
       ---
     </details>
 

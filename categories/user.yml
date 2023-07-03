@@ -72,6 +72,13 @@ requests:
     body:
       basedImageFile: '[Base64 decoded png/jpg file]'
 
+    response:
+      id: 1
+      username: 'SmashUp'
+      imageUrl: '1'
+      backgroundColor: 16777215
+      permissions: 1
+
     codes:
       200:
         - Если обложка была сохранена успешно
