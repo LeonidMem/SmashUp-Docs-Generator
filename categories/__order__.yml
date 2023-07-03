@@ -1,6 +1,7 @@
 order:
 #  - static
   - auth
+  - firebase
   - user
 #  - recommendations
   - mashups

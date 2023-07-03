@@ -213,6 +213,55 @@
     </details>
 
 
+* **Firebase и уведомления на Android**:
+  * <details>
+      <summary><b>[T]</b> Обновить токен: <code>[POST] /firebase/update_token?token=[TOKEN]</code></summary>
+
+      <br>Добавляет токен в базу данных или продлевает его время жизни.
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `400 Bad Request`
+        * Если указан некорректный токен
+
+      ---
+
+      **Пример запроса:** `/firebase/update_token?token=some_firebase_token`
+
+      ---
+
+      **[TOKEN] RegEx**: `.{32,256}`
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[T]</b> Удалить токен: <code>[POST] /firebase/delete_token?token=[TOKEN]</code></summary>
+
+      <br>Удаляет токен из базы данных, чтобы по нему больше не отправлялись уведомления.
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `400 Bad Request`
+        * Если указан некорректный токен
+
+      ---
+
+      **Пример запроса:** `/firebase/delete_token?token=some_firebase_token`
+
+      ---
+
+      **[TOKEN] RegEx**: `.{32,256}`
+
+      ---
+    </details>
+
+
 * **Пользователи**:
   * <details>
       <summary>Получить: <code>[GET] /user/get?id=[ID] *или* /user/get?username=[USERNAME] *или* /user/get?token=[TOKEN]</code></summary>

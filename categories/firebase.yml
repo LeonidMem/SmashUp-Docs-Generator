@@ -1,0 +1,36 @@
+header: 'Firebase и уведомления на Android'
+
+requests:
+  update:
+    mark: 'T'
+    name: 'Обновить токен'
+    link: '[POST] /firebase/update_token?token=[TOKEN]'
+    description: 'Добавляет токен в базу данных или продлевает его время жизни.'
+
+    request: '/firebase/update_token?token=some_firebase_token'
+
+    regex:
+      TOKEN: .{32,256}
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      400:
+        - Если указан некорректный токен
+
+  delete:
+    mark: 'T'
+    name: 'Удалить токен'
+    link: '[POST] /firebase/delete_token?token=[TOKEN]'
+    description: 'Удаляет токен из базы данных, чтобы по нему больше не отправлялись уведомления.'
+
+    request: '/firebase/delete_token?token=some_firebase_token'
+
+    regex:
+      TOKEN: .{32,256}
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      400:
+        - Если указан некорректный токен
