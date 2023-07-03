@@ -160,6 +160,13 @@ requests:
       400:
         - Если указан некорректный ID
 
+  get_all_likes:
+    mark: 'T'
+    name: 'Получить все лайки'
+    link: '[GET] /mashup/get_all_likes'
+
+    response: [1, 4, 5, 8]
+
   upload:
     mark: 'T'
     name: 'Отправить мэшап на премодерацию или опубликовать его'

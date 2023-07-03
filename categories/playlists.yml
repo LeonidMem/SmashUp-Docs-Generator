@@ -72,6 +72,40 @@ requests:
         - Если произошла ошибка при создании плейлиста
 
 
+  edit:
+    mark: 'T'
+    name: 'Изменить'
+    link: '[GET] /playlist/edit?id=[ID]'
+
+    body:
+      name: 'Какое-то имя2'
+      description: 'Какое-то описание2'
+      basedImageFile: '[Base64 decoded png/jpg file]'
+      __basedImageFile__: 'Параметр ''basedImageFile'' необязателен'
+
+    response:
+      id: 100
+      name: 'Какое-то имя2'
+      description: 'Какое-то описание2'
+      authors: ['LeonidM']
+      imageUrl: '100'
+      backgroundColor: 16777215
+      mashups: []
+      likes: 0
+      streams: 0
+
+    regex:
+      ID: '\d+'
+
+    codes:
+      200:
+        - Если плейлист был изменен
+      403:
+        - Если пользователь не является модератором и не является автором плейлиста
+      404:
+        - Если плейлист с указанным ID не был найден
+
+
 #  delete:
 #    mark: 'T'
 #    name: 'Удалить'

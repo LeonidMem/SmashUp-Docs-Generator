@@ -492,6 +492,25 @@
       ---
     </details>
   * <details>
+      <summary><b>[T]</b> Получить все лайки: <code>[GET] /mashup/get_all_likes</code></summary>
+
+      <br>
+
+      ---
+
+      **Пример ответа:**
+      ```json
+      [
+          1,
+          4,
+          5,
+          8
+      ]
+      ```
+
+      ---
+    </details>
+  * <details>
       <summary><b>[T]</b> Отправить мэшап на премодерацию или опубликовать его: <code>[POST] /mashup/upload</code></summary>
 
       <br>Публикует мэшап, если запрос был отправлен верифицированным пользователем или модератором.
@@ -688,6 +707,56 @@
           "streams": 0
       }
       ```
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[T]</b> Изменить: <code>[GET] /playlist/edit?id=[ID]</code></summary>
+
+      <br>
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если плейлист был изменен
+      * `403 Forbidden`
+        * Если пользователь не является модератором и не является автором плейлиста
+      * `404 Not Found`
+        * Если плейлист с указанным ID не был найден
+
+      ---
+
+      **Пример тела запроса:**
+      ```json
+      {
+          "name": "Какое-то имя2",
+          "description": "Какое-то описание2",
+          "basedImageFile": "[Base64 decoded png/jpg file]",
+          "__basedImageFile__": "Параметр 'basedImageFile' необязателен"
+      }
+      ```
+
+      **Пример ответа:**
+      ```json
+      {
+          "id": 100,
+          "name": "Какое-то имя2",
+          "description": "Какое-то описание2",
+          "authors": [
+              "LeonidM"
+          ],
+          "imageUrl": "100",
+          "backgroundColor": 16777215,
+          "mashups": [],
+          "likes": 0,
+          "streams": 0
+      }
+      ```
+
+      ---
+
+      **[ID] RegEx**: `\d+`
 
       ---
     </details>
