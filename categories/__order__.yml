@@ -3,7 +3,7 @@ order:
   - auth
   - firebase
   - user
-#  - recommendations
+  - recommendations
   - mashups
   - playlists
   - tracks
