@@ -84,3 +84,140 @@ requests:
         - Если обложка была сохранена успешно
       403:
         - Если пользователь, который отправил запрос, забанен
+
+
+  change_email:
+    mark: 'T'
+    name: 'Изменить почту'
+    link: '[POST] /user/change_email'
+
+    body:
+      password: 'MyCurrentPassword'
+      email: 'new.email@smashup.ru'
+
+    codes:
+      200:
+        - Если письмо было отправлено на почту
+      208:
+        - Если пользователь уже запросил изменение почты в течение последних 5 минут
+      403:
+        - Если указан некорректный пароль
+      500:
+        - Если письмо из-за какой-то ошибки не было отправлено на почту
+
+  change_email_confirm:
+    mark: 'T'
+    name: 'Подтвердить изменение почты'
+    link: '[POST] /user/change_email/confirm?id=[ID]'
+
+    regex:
+      ID: '{UUID RegEx}'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      404:
+        - Если нет изменения с указанным ID
+
+
+  change_password:
+    mark: 'T'
+    name: 'Изменить пароль'
+    link: '[POST] /user/change_password'
+
+    body:
+      password: 'MyCurrentPassword'
+      newPassword: 'MyNewPassword'
+
+    codes:
+      200:
+        - Если письмо было отправлено на почту
+      208:
+        - Если пользователь уже запросил изменение пароля в течение последних 5 минут
+      403:
+        - Если указан некорректный текущий пароль
+      500:
+        - Если письмо из-за какой-то ошибки не было отправлено на почту
+
+  change_password_confirm:
+    mark: 'T'
+    name: 'Подтвердить изменение пароля'
+    link: '[POST] /user/change_password/confirm?id=[ID]'
+
+    regex:
+      ID: '{UUID RegEx}'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      404:
+        - Если нет изменения с указанным ID
+
+
+  change_username:
+    mark: 'T'
+    name: 'Изменить имя пользователя'
+    link: '[POST] /user/change_username'
+
+    body:
+      password: 'MyCurrentPassword'
+      username: 'MyNewUsername'
+
+    codes:
+      200:
+        - Если письмо было отправлено на почту
+      208:
+        - Если пользователь уже запросил изменение имени пользователя в течение последних 5 минут
+      403:
+        - Если указан некорректный текущий пароль
+      500:
+        - Если письмо из-за какой-то ошибки не было отправлено на почту
+
+  change_username_confirm:
+    mark: 'T'
+    name: 'Подтвердить изменение имени пользователя'
+    link: '[POST] /user/change_username/confirm?id=[ID]'
+
+    regex:
+      ID: '{UUID RegEx}'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      404:
+        - Если нет изменения с указанным ID
+
+
+  recover_password:
+    mark: 'T'
+    name: 'Восстановить пароль'
+    link: '[POST] /user/recover_password'
+    description: 'Поле `username` может быть как никнеймом, так и почтой.'
+
+    body:
+      username: 'MyCurrentNickname'
+
+    codes:
+      200:
+        - Если письмо было отправлено на почту
+      208:
+        - Если пользователь уже запросил восстановление пароля в течение последних 5 минут
+      404:
+        - Если пользователь с указанным никнеймом или почтой не был найден
+      500:
+        - Если письмо из-за какой-то ошибки не было отправлено на почту
+
+  recover_password_confirm:
+    mark: 'T'
+    name: 'Подтвердить восстановление пароля'
+    link: '[POST] /user/recover_password/confirm'
+
+    body:
+      id: 'a0d2f1be-4113-4d25-9be3-42270a24cf37'
+      newPassword: 'MyNewPassword'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      404:
+        - Если нет восстановления с указанным ID
