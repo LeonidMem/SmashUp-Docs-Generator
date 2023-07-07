@@ -424,6 +424,203 @@
 
       ---
     </details>
+  * <details>
+      <summary><b>[T]</b> Изменить почту: <code>[POST] /user/change_email</code></summary>
+
+      <br>
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если письмо было отправлено на почту
+      * `208 Already reported`
+        * Если пользователь уже запросил изменение почты в течение последних 5 минут
+      * `403 Forbidden`
+        * Если указан некорректный пароль
+      * `500 Internal Server Error`
+        * Если письмо из-за какой-то ошибки не было отправлено на почту
+
+      ---
+
+      **Пример тела запроса:**
+      ```json
+      {
+          "password": "MyCurrentPassword",
+          "email": "new.email@smashup.ru"
+      }
+      ```
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[T]</b> Подтвердить изменение почты: <code>[POST] /user/change_email/confirm?id=[ID]</code></summary>
+
+      <br>
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `404 Not Found`
+        * Если нет изменения с указанным ID
+
+      ---
+
+      **[ID] RegEx**: `{UUID RegEx}`
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[T]</b> Изменить пароль: <code>[POST] /user/change_password</code></summary>
+
+      <br>
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если письмо было отправлено на почту
+      * `208 Already reported`
+        * Если пользователь уже запросил изменение пароля в течение последних 5 минут
+      * `403 Forbidden`
+        * Если указан некорректный текущий пароль
+      * `500 Internal Server Error`
+        * Если письмо из-за какой-то ошибки не было отправлено на почту
+
+      ---
+
+      **Пример тела запроса:**
+      ```json
+      {
+          "password": "MyCurrentPassword",
+          "newPassword": "MyNewPassword"
+      }
+      ```
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[T]</b> Подтвердить изменение пароля: <code>[POST] /user/change_password/confirm?id=[ID]</code></summary>
+
+      <br>
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `404 Not Found`
+        * Если нет изменения с указанным ID
+
+      ---
+
+      **[ID] RegEx**: `{UUID RegEx}`
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[T]</b> Изменить имя пользователя: <code>[POST] /user/change_username</code></summary>
+
+      <br>
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если письмо было отправлено на почту
+      * `208 Already reported`
+        * Если пользователь уже запросил изменение имени пользователя в течение последних 5 минут
+      * `403 Forbidden`
+        * Если указан некорректный текущий пароль
+      * `500 Internal Server Error`
+        * Если письмо из-за какой-то ошибки не было отправлено на почту
+
+      ---
+
+      **Пример тела запроса:**
+      ```json
+      {
+          "password": "MyCurrentPassword",
+          "username": "MyNewUsername"
+      }
+      ```
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[T]</b> Подтвердить изменение имени пользователя: <code>[POST] /user/change_username/confirm?id=[ID]</code></summary>
+
+      <br>
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `404 Not Found`
+        * Если нет изменения с указанным ID
+
+      ---
+
+      **[ID] RegEx**: `{UUID RegEx}`
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[T]</b> Восстановить пароль: <code>[POST] /user/recover_password</code></summary>
+
+      <br>Поле `username` может быть как никнеймом, так и почтой.
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если письмо было отправлено на почту
+      * `208 Already reported`
+        * Если пользователь уже запросил восстановление пароля в течение последних 5 минут
+      * `404 Not Found`
+        * Если пользователь с указанным никнеймом или почтой не был найден
+      * `500 Internal Server Error`
+        * Если письмо из-за какой-то ошибки не было отправлено на почту
+
+      ---
+
+      **Пример тела запроса:**
+      ```json
+      {
+          "username": "MyCurrentNickname"
+      }
+      ```
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[T]</b> Подтвердить восстановление пароля: <code>[POST] /user/recover_password/confirm</code></summary>
+
+      <br>
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `404 Not Found`
+        * Если нет восстановления с указанным ID
+
+      ---
+
+      **Пример тела запроса:**
+      ```json
+      {
+          "id": "a0d2f1be-4113-4d25-9be3-42270a24cf37",
+          "newPassword": "MyNewPassword"
+      }
+      ```
+
+      ---
+    </details>
 
 
 * **Рекомендации**:
@@ -1652,6 +1849,28 @@
           "reason": "Оффбит"
       }
       ```
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[M]</b> Забанить пользователя: <code>[POST] /moderation/user/ban?id=[ID]</code></summary>
+
+      <br>
+
+      ---
+
+      **[ID] RegEx**: `\d+`
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[M]</b> Разбанить пользователя: <code>[POST] /moderation/user/unban?id=[ID]</code></summary>
+
+      <br>
+
+      ---
+
+      **[ID] RegEx**: `\d+`
 
       ---
     </details>

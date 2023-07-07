@@ -89,3 +89,19 @@ requests:
     body:
       id: 1
       reason: 'Оффбит'
+
+  ban_user:
+    mark: 'M'
+    name: 'Забанить пользователя'
+    link: '[POST] /moderation/user/ban?id=[ID]'
+
+    regex:
+      ID: '\d+'
+
+  unban_user:
+    mark: 'M'
+    name: 'Разбанить пользователя'
+    link: '[POST] /moderation/user/unban?id=[ID]'
+
+    regex:
+      ID: '\d+'
