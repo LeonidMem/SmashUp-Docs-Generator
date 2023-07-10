@@ -569,7 +569,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Восстановить пароль: <code>[POST] /user/recover_password</code></summary>
+      <summary>Восстановить пароль: <code>[POST] /user/recover_password</code></summary>
 
       <br>Поле `username` может быть как никнеймом, так и почтой.
 
@@ -597,7 +597,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Подтвердить восстановление пароля: <code>[POST] /user/recover_password/confirm</code></summary>
+      <summary>Подтвердить восстановление пароля: <code>[POST] /user/recover_password/confirm</code></summary>
 
       <br>
 

@@ -189,7 +189,6 @@ requests:
 
 
   recover_password:
-    mark: 'T'
     name: 'Восстановить пароль'
     link: '[POST] /user/recover_password'
     description: 'Поле `username` может быть как никнеймом, так и почтой.'
@@ -208,7 +207,6 @@ requests:
         - Если письмо из-за какой-то ошибки не было отправлено на почту
 
   recover_password_confirm:
-    mark: 'T'
     name: 'Подтвердить восстановление пароля'
     link: '[POST] /user/recover_password/confirm'
 
