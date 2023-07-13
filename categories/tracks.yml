@@ -22,7 +22,7 @@ requests:
         link: 'https://music.yandex.ru/album/5512081/'
 
     regex:
-      IDS: '\d+(?:,\d+){1,100}'
+      IDS: '\d+(?:,\d+){0, 99}'
 
     codes:
       200:
