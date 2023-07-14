@@ -8,11 +8,13 @@ requests:
 
     request: '/user/get?id=1'
     response:
-      - id: 1
-        username: 'SmashUp'
-        imageUrl: '1'
-        backgroundColor: 16777215
-        permissions: 1
+      id: 1
+      username: 'SmashUp'
+      imageUrl: '1'
+      backgroundColor: 16777215
+      permissions: 1
+      mashups: []
+      playlists: [1, 2, 3]
 
     regex:
       ID: '\d+'
@@ -30,6 +32,39 @@ requests:
       404:
         - Если пользователь с указанным ID, USERNAME или TOKEN не был найден
 
+
+  get_many:
+    name: 'Получить несколько пользователей'
+    link: '[GET] /user/get_many?id=[IDS]'
+    description: 'Возвращает список сериализованных пользователей.'
+
+    request: '/user/get_many?id=1,2'
+    response:
+      - id: 1
+        username: 'SmashUp'
+        imageUrl: '1'
+        backgroundColor: 16777215
+        permissions: 1
+        mashups: []
+        playlists: [1, 2, 3]
+      - id: 2
+        username: 'LeonidM'
+        imageUrl: '2'
+        backgroundColor: 16777215
+        permissions: 1
+        mashups: [1, 2, 3, 4]
+        playlist: []
+
+    regex:
+      IDS: '\d+(?:,\d+){0, 99}'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      400:
+        - Если некорректно указаны ID
+      404:
+        - Если пользователь с указанным ID не был найден
 
   get_settings:
     mark: 'T'
@@ -78,6 +113,8 @@ requests:
       imageUrl: '1'
       backgroundColor: 16777215
       permissions: 1
+      mashups: []
+      playlists: [1, 2, 3]
 
     codes:
       200:

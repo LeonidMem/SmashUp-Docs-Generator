@@ -312,15 +312,19 @@
 
       **Пример ответа:**
       ```json
-      [
-          {
-              "id": 1,
-              "username": "SmashUp",
-              "imageUrl": "1",
-              "backgroundColor": 16777215,
-              "permissions": 1
-          }
-      ]
+      {
+          "id": 1,
+          "username": "SmashUp",
+          "imageUrl": "1",
+          "backgroundColor": 16777215,
+          "permissions": 1,
+          "mashups": [],
+          "playlists": [
+              1,
+              2,
+              3
+          ]
+      }
       ```
 
       ---
@@ -334,6 +338,64 @@
       ---
 
       **Контракт:**: `Only one of parameters (id, username, token) must be specified`
+
+      ---
+    </details>
+  * <details>
+      <summary>Получить несколько пользователей: <code>[GET] /user/get_many?id=[IDS]</code></summary>
+
+      <br>Возвращает список сериализованных пользователей.
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `400 Bad Request`
+        * Если некорректно указаны ID
+      * `404 Not Found`
+        * Если пользователь с указанным ID не был найден
+
+      ---
+
+      **Пример запроса:** `/user/get_many?id=1,2`
+
+      **Пример ответа:**
+      ```json
+      [
+          {
+              "id": 1,
+              "username": "SmashUp",
+              "imageUrl": "1",
+              "backgroundColor": 16777215,
+              "permissions": 1,
+              "mashups": [],
+              "playlists": [
+                  1,
+                  2,
+                  3
+              ]
+          },
+          {
+              "id": 2,
+              "username": "LeonidM",
+              "imageUrl": "2",
+              "backgroundColor": 16777215,
+              "permissions": 1,
+              "mashups": [
+                  1,
+                  2,
+                  3,
+                  4
+              ],
+              "playlist": []
+          }
+      ]
+      ```
+
+      ---
+
+      **[IDS] RegEx**: `\d+(?:,\d+){0, 99}`
 
       ---
     </details>
@@ -418,7 +480,13 @@
           "username": "SmashUp",
           "imageUrl": "1",
           "backgroundColor": 16777215,
-          "permissions": 1
+          "permissions": 1,
+          "mashups": [],
+          "playlists": [
+              1,
+              2,
+              3
+          ]
       }
       ```
 
@@ -1002,76 +1070,6 @@
       ---
 
       **[IDS] RegEx**: `\d+(?:,\d+){0,99}`
-
-      ---
-    </details>
-  * <details>
-      <summary>Получить все плейлисты пользователя: <code>[GET] /playlist/get_by_user?id=[ID]</code></summary>
-
-      <br>Возвращает списком сериализованные плейлисты.
-
-      ---
-
-      ## Возвращаемые коды:
-      * `200 OK`
-        * Если всё хорошо и слава тебе, Господи
-      * `400 Bad Request`
-        * Если некорректно указаны ID
-      * `404 Not Found`
-        * Если пользователь с указанным ID не найден
-
-      ---
-
-      **Пример запроса:** `/playlist/get_by_user?id=2`
-
-      **Пример ответа:**
-      ```json
-      [
-          {
-              "id": 689,
-              "name": "Пылесосен",
-              "description": "",
-              "authors": [
-                  "LeonidM"
-              ],
-              "imageUrl": "default",
-              "backgroundColor": 16777215,
-              "type": "playlist",
-              "mashups": [
-                  340,
-                  648
-              ],
-              "likes": 0,
-              "streams": 0
-          },
-          {
-              "id": 964,
-              "name": "Убиты, но не вами",
-              "description": "",
-              "authors": [
-                  "LeonidM"
-              ],
-              "imageUrl": "964",
-              "backgroundColor": 16777215,
-              "mashups": [
-                  368,
-                  509,
-                  156,
-                  114,
-                  591,
-                  377,
-                  144,
-                  376
-              ],
-              "likes": 1,
-              "streams": 7
-          }
-      ]
-      ```
-
-      ---
-
-      **[ID] RegEx**: `\d+`
 
       ---
     </details>
