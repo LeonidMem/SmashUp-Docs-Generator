@@ -34,7 +34,7 @@ requests:
   upload_yandex_music:
     mark: 'V'
     name: 'Опубликовать с Яндекс.Музыки'
-    link: '[GET] /track/upload/yandex_music?albumId=[ID]'
+    link: '[POST] /track/upload/yandex_music?albumId=[ID]'
     description: 'Возвращает списком сериализованные треки.'
 
     request: '/track/upload/yandex_music?id=4712222'
@@ -70,7 +70,7 @@ requests:
   upload_youtube_video:
     mark: 'V'
     name: 'Опубликовать с видео YouTube'
-    link: '[GET] /track/upload/youtube/video'
+    link: '[POST] /track/upload/youtube/video'
     description: 'Возвращает сериализованный трек.'
 
     body:

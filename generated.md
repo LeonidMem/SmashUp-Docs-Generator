@@ -1396,7 +1396,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[V]</b> Опубликовать с Яндекс.Музыки: <code>[GET] /track/upload/yandex_music?albumId=[ID]</code></summary>
+      <summary><b>[V]</b> Опубликовать с Яндекс.Музыки: <code>[POST] /track/upload/yandex_music?albumId=[ID]</code></summary>
 
       <br>Возвращает списком сериализованные треки.
 
@@ -1451,7 +1451,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[V]</b> Опубликовать с видео YouTube: <code>[GET] /track/upload/youtube/video</code></summary>
+      <summary><b>[V]</b> Опубликовать с видео YouTube: <code>[POST] /track/upload/youtube/video</code></summary>
 
       <br>Возвращает сериализованный трек.
 
