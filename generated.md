@@ -750,6 +750,9 @@
               "authors": [
                   "CTAK_CO6AK"
               ],
+              "authorsIds": [
+                  1
+              ],
               "genres": [
                   "рэп"
               ],
@@ -771,6 +774,9 @@
               "name": "everything you MFers talk about is 1.kla$",
               "authors": [
                   "MC Symon"
+              ],
+              "authorsIds": [
+                  5
               ],
               "genres": [
                   "рэп"
@@ -1372,6 +1378,9 @@
               "authors": [
                   "MORGENSHTERN"
               ],
+              "authorsIds": [
+                  1
+              ],
               "imageUrl": "1",
               "backgroundColor": 16777215,
               "link": "https://music.yandex.ru/album/9647864/"
@@ -1381,6 +1390,9 @@
               "name": "Спортивные очки",
               "authors": [
                   "Буерак"
+              ],
+              "authorsIds": [
+                  1
               ],
               "imageUrl": "398",
               "backgroundColor": 16777215,
@@ -1427,6 +1439,9 @@
               "authors": [
                   "MORGENSHTERN"
               ],
+              "authorsIds": [
+                  1
+              ],
               "imageUrl": "1",
               "backgroundColor": 16777215,
               "link": "https://music.yandex.ru/album/9647864/"
@@ -1436,6 +1451,9 @@
               "name": "Спортивные очки",
               "authors": [
                   "Буерак"
+              ],
+              "authorsIds": [
+                  1
               ],
               "imageUrl": "398",
               "backgroundColor": 16777215,
@@ -1487,6 +1505,9 @@
           "name": "Never Gonna Give You Up",
           "authors": [
               "Rick Astley"
+          ],
+          "authorsIds": [
+              1
           ],
           "imageUrl": "10000",
           "backgroundColor": 16777215,

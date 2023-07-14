@@ -11,12 +11,14 @@ requests:
       - id: 1
         name: 'Я ПЫЛЬ'
         authors: ['MORGENSHTERN']
+        authorsIds: [1]
         imageUrl: '1'
         backgroundColor: 16777215
         link: 'https://music.yandex.ru/album/9647864/'
       - id: 400
         name: 'Спортивные очки'
         authors: ['Буерак']
+        authorsIds: [1]
         imageUrl: '398'
         backgroundColor: 16777215
         link: 'https://music.yandex.ru/album/5512081/'
@@ -42,12 +44,14 @@ requests:
       - id: 1
         name: 'Я ПЫЛЬ'
         authors: ['MORGENSHTERN']
+        authorsIds: [1]
         imageUrl: '1'
         backgroundColor: 16777215
         link: 'https://music.yandex.ru/album/9647864/'
       - id: 400
         name: 'Спортивные очки'
         authors: ['Буерак']
+        authorsIds: [1]
         imageUrl: '398'
         backgroundColor: 16777215
         link: 'https://music.yandex.ru/album/5512081/'
@@ -82,6 +86,7 @@ requests:
       id: 10000
       name: 'Never Gonna Give You Up'
       authors: ['Rick Astley']
+      authorsIds: [1]
       imageUrl: '10000'
       backgroundColor: 16777215
       link: 'https://youtube.com/watch?v=dQw4w9WgXcQ'

@@ -13,6 +13,7 @@ requests:
       - id: 207
         name: 'Unlike 1.kla$ - Everything Почему'
         authors: ['CTAK_CO6AK']
+        authorsIds: [1]
         genres: ['рэп']
         tracks: [5781, 403]
         imageUrl: '207'
@@ -26,6 +27,7 @@ requests:
       - id: 428
         name: 'everything you MFers talk about is 1.kla$'
         authors: ['MC Symon']
+        authorsIds: [5]
         genres: ['рэп']
         tracks: [7303, 402]
         imageUrl: '428'
