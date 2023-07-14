@@ -254,7 +254,7 @@
   * <details>
       <summary>Авторизоваться через VK: <code>[GET] /vk/authorize?code=[CODE]</code></summary>
 
-      <br>Возвращает не список сущностей, как это показано ниже, а лишь одну из них *(без каких-либо массивов)*.
+      <br>**`[!]`** Возвращает не список сущностей, как это показано ниже, а лишь одну из них *(без каких-либо массивов)*.
 
       ---
 
@@ -2089,6 +2089,87 @@
     </details>
   * <details>
       <summary><b>[M]</b> Разбанить пользователя: <code>[POST] /moderation/user/unban?id=[ID]</code></summary>
+
+      <br>
+
+      ---
+
+      **[ID] RegEx**: `\d+`
+
+      ---
+    </details>
+
+
+* **Уведомления**:
+  * <details>
+      <summary><b>[T]</b> Получить: <code>[GET] /notification/get</code></summary>
+
+      <br>Возвращает списком сериализованные уведомления.
+
+      ---
+
+      **Пример ответа:**
+      ```json
+      [
+          {
+              "id": -1,
+              "imageUrl": null,
+              "meta": {
+                  "type": "UNPUBLISHED_MASHUPS_FROM_VK",
+                  "count": 200
+              }
+          },
+          {
+              "id": 1,
+              "imageUrl": "/uploads/mashup/100_100x100",
+              "meta": {
+                  "type": "CONFIRM_CO_AUTHORSHIP",
+                  "mashupId": 100
+              }
+          },
+          {
+              "id": 2,
+              "imageUrl": "/uploads/mashup/default_100x100",
+              "meta": {
+                  "type": "MASHUP_STATUS",
+                  "mashupName": "Username — Мега-мэшап",
+                  "published": false,
+                  "reason": "Оффбит"
+              }
+          }
+      ]
+      ```
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[T]</b> Взаимодействовать: <code>[POST] /notification/interact?id=[ID]</code></summary>
+
+      <br>Взаимодействует с уведомлениями. Отправляется вместе с [BODY], которое зависит от уведомления.
+
+      Уведомления, с которыми можно взаимодействовать:
+
+      * `CONFIRM_CO_AUTHORSHIP` | Пример [BODY] — `{"accepted":true}`
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `400 Bad Request`
+        * Если указан некорректный ID или BODY
+        * Если с указанным уведомлением нельзя взаимодействовать
+      * `404 Not Found`
+        * Если уведомление с указанным ID не найден
+
+      ---
+
+      **[ID] RegEx**: `\d+`
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[T]</b> Удалить: <code>[POST] /notification/delete?id=[ID]</code></summary>
 
       <br>
 

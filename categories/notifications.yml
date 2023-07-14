@@ -8,6 +8,11 @@ requests:
     description: 'Возвращает списком сериализованные уведомления.'
 
     response:
+      - id: -1
+        imageUrl: null
+        meta:
+          type: 'UNPUBLISHED_MASHUPS_FROM_VK'
+          count: 200
       - id: 1
         imageUrl: '/uploads/mashup/100_100x100'
         meta:

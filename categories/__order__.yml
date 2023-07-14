@@ -1,5 +1,4 @@
 order:
-#  - static
   - auth
   - firebase
   - user
@@ -10,3 +9,4 @@ order:
   - tracks_authors
   - search
   - moderation
+  - notifications
