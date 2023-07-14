@@ -75,15 +75,15 @@
   * Плейлистом: `/share/playlist?id=[ID]&sharedBy=[NICKNAME]`
 * **Контент**
   * Получить мэшап: `/uploads/mashup/[ID].mp3?bitrate=[MAX_BITRATE]`
-  * Получить обложку мэшапа: `/uploads/mashup/[ID]_[SIZE].png`
+  * Получить обложку мэшапа: `/uploads/mashup/[IMAGE_URL]_[SIZE].png`
     * Возможные значения SIZE: `[100x100, 400x400, 800x800]`
-  * Получить обложку плейлиста: `/uploads/playlist/[ID]_[SIZE].png`
+  * Получить обложку плейлиста: `/uploads/playlist/[IMAGE_URL]_[SIZE].png`
     * Возможные значения SIZE: `[100x100, 400x400, 800x800]`
-  * Получить обложку трека: `/uploads/track/[ID]_[SIZE].png`
+  * Получить обложку трека: `/uploads/track/[IMAGE_URL]_[SIZE].png`
     * Возможные значения SIZE: `[100x100, 400x400, 800x800]`
-  * Получить обложку автора треков: `/uploads/track_author/[ID]_[SIZE].png`
+  * Получить обложку автора треков: `/uploads/track_author/[IMAGE_URL]_[SIZE].png`
     * Возможные значения SIZE: `[100x100, 400x400, 800x800]`
-  * Получить аватар пользователя: `/uploads/user/[ID]_[SIZE].png`
+  * Получить аватар пользователя: `/uploads/user/[IMAGE_URL]_[SIZE].png`
     * Возможные значения SIZE: `[100x100, 400x400, 800x800]`
   * Получить мэшап на премодерации: `/uploads/moderation/mashup/[ID].mp3`
   * Получить обложку мэшапа на премодерации: `/uploads/moderation/mashup/[ID]_800x800.png`

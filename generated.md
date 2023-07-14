@@ -75,15 +75,15 @@
   * Плейлистом: `/share/playlist?id=[ID]&sharedBy=[NICKNAME]`
 * **Контент**
   * Получить мэшап: `/uploads/mashup/[ID].mp3?bitrate=[MAX_BITRATE]`
-  * Получить обложку мэшапа: `/uploads/mashup/[ID]_[SIZE].png`
+  * Получить обложку мэшапа: `/uploads/mashup/[IMAGE_URL]_[SIZE].png`
     * Возможные значения SIZE: `[100x100, 400x400, 800x800]`
-  * Получить обложку плейлиста: `/uploads/playlist/[ID]_[SIZE].png`
+  * Получить обложку плейлиста: `/uploads/playlist/[IMAGE_URL]_[SIZE].png`
     * Возможные значения SIZE: `[100x100, 400x400, 800x800]`
-  * Получить обложку трека: `/uploads/track/[ID]_[SIZE].png`
+  * Получить обложку трека: `/uploads/track/[IMAGE_URL]_[SIZE].png`
     * Возможные значения SIZE: `[100x100, 400x400, 800x800]`
-  * Получить обложку автора треков: `/uploads/track_author/[ID]_[SIZE].png`
+  * Получить обложку автора треков: `/uploads/track_author/[IMAGE_URL]_[SIZE].png`
     * Возможные значения SIZE: `[100x100, 400x400, 800x800]`
-  * Получить аватар пользователя: `/uploads/user/[ID]_[SIZE].png`
+  * Получить аватар пользователя: `/uploads/user/[IMAGE_URL]_[SIZE].png`
     * Возможные значения SIZE: `[100x100, 400x400, 800x800]`
   * Получить мэшап на премодерации: `/uploads/moderation/mashup/[ID].mp3`
   * Получить обложку мэшапа на премодерации: `/uploads/moderation/mashup/[ID]_800x800.png`
@@ -1514,6 +1514,52 @@
           "link": "https://youtube.com/watch?v=dQw4w9WgXcQ"
       }
       ```
+
+      ---
+    </details>
+
+
+* **Авторы треков**:
+  * <details>
+      <summary>Получить: <code>[GET] /tracks_authors/get?id=1,2</code></summary>
+
+      <br>Возвращает списком сериализованных авторов треков.
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `400 Bad Request`
+        * Если некорректно указаны ID
+      * `404 Not Found`
+        * Если хотя бы один из указанных ID не является ID какого-либо автора треков
+
+      ---
+
+      **Пример запроса:** `/tracks_authors/get?id=1,2`
+
+      **Пример ответа:**
+      ```json
+      [
+          {
+              "id": 1,
+              "name": "MORGENSHTERN",
+              "imageUrl": "1",
+              "backgroundColor": 12630712
+          },
+          {
+              "id": 2,
+              "name": "Molchat Doma",
+              "imageUrl": "default",
+              "backgroundColor": 4539717
+          }
+      ]
+      ```
+
+      ---
+
+      **[IDS] RegEx**: `\d+(?:,\d+){0,99}`
 
       ---
     </details>
