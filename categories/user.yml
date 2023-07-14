@@ -80,7 +80,7 @@ requests:
   change_settings:
     mark: 'T'
     name: 'Изменить настройки'
-    link: '[GET] /user/change_setting?bit=[BIT]&value=[VALUE]'
+    link: '[POST] /user/change_setting?bit=[BIT]&value=[VALUE]'
     description: 'Изменяет настройки пользователя, сделавшего этот запрос, и возвращает новое значение бит-маски.'
 
     request: '/user/get_settings'
