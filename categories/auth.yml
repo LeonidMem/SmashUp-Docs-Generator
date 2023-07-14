@@ -78,3 +78,53 @@ requests:
         - Если подтверждение регистрации с указанными ID не найдено
       500:
         - Если произошла ошибка при создании пользователя
+
+
+  vk_authorize_url:
+    name: 'Получить ссылку для авторизации через VK'
+    link: '[GET] /vk/authorize/url'
+    description: 'Перейдя по указанной ссылке, откроется VK OAuth, после которого пользователь будет перенаправлен на адрес `https://smashup.ru/vk/authorize?code=[CODE]`.'
+
+  vk_authorize:
+    name: 'Авторизоваться через VK'
+    link: '[GET] /vk/authorize?code=[CODE]'
+    description: 'Возвращает не список сущностей, как это показано ниже, а лишь одну из них *(без каких-либо массивов)*.'
+
+    request: '/vk/authorize?code=88a28005b53e241031'
+    response:
+      - id: 1
+        username: 'SmashUp'
+        imageUrl: 'default'
+        backgroundColor: 16777215
+        permissions: 7
+        token: 'd404f899-eac6-4355-a651-1a8daef84550'
+        loggedIn: true
+      - vkId: 1000
+        email: 'email@gmail.com'
+        loggedIn: false
+
+    codes:
+      200:
+        - Если пользователь должен быть зарегистрирован или если он успешно вошёл
+      500:
+        - Если произошла ошибка при получении данных пользователя
+
+
+  vk_link_url:
+    mark: 'T'
+    name: 'Получить ссылку для привязки VK'
+    link: '[GET] /vk/link/url'
+    description: 'Перейдя по указанной ссылке, откроется VK OAuth, после которого пользователь будет перенаправлен на адрес `https://smashup.ru/vk/link?code=[CODE]`.'
+
+  vk_link:
+    mark: 'T'
+    name: 'Привязать VK к учётной записи'
+    link: '[GET] /vk/link?code=[CODE]'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      409:
+        - Если существует пользователь, привязанный к данной учётной записи VK
+      500:
+        - Если произошла ошибка при получении данных пользователя

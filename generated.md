@@ -238,6 +238,82 @@
 
       ---
     </details>
+  * <details>
+      <summary>Получить ссылку для авторизации через VK: <code>[GET] /vk/authorize/url</code></summary>
+
+      <br>Перейдя по указанной ссылке, откроется VK OAuth, после которого пользователь будет перенаправлен на адрес `https://smashup.ru/vk/authorize?code=[CODE]`.
+
+      ---
+
+      ---
+    </details>
+  * <details>
+      <summary>Авторизоваться через VK: <code>[GET] /vk/authorize?code=[CODE]</code></summary>
+
+      <br>Возвращает не список сущностей, как это показано ниже, а лишь одну из них *(без каких-либо массивов)*.
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если пользователь должен быть зарегистрирован или если он успешно вошёл
+      * `500 Internal Server Error`
+        * Если произошла ошибка при получении данных пользователя
+
+      ---
+
+      **Пример запроса:** `/vk/authorize?code=88a28005b53e241031`
+
+      **Пример ответа:**
+      ```json
+      [
+          {
+              "id": 1,
+              "username": "SmashUp",
+              "imageUrl": "default",
+              "backgroundColor": 16777215,
+              "permissions": 7,
+              "token": "d404f899-eac6-4355-a651-1a8daef84550",
+              "loggedIn": true
+          },
+          {
+              "vkId": 1000,
+              "email": "email@gmail.com",
+              "loggedIn": false
+          }
+      ]
+      ```
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[T]</b> Получить ссылку для привязки VK: <code>[GET] /vk/link/url</code></summary>
+
+      <br>Перейдя по указанной ссылке, откроется VK OAuth, после которого пользователь будет перенаправлен на адрес `https://smashup.ru/vk/link?code=[CODE]`.
+
+      ---
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[T]</b> Привязать VK к учётной записи: <code>[GET] /vk/link?code=[CODE]</code></summary>
+
+      <br>
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `409 Conflict`
+        * Если существует пользователь, привязанный к данной учётной записи VK
+      * `500 Internal Server Error`
+        * Если произошла ошибка при получении данных пользователя
+
+      ---
+
+      ---
+    </details>
 
 
 * **Firebase и уведомления на Android**:
