@@ -1,13 +1,31 @@
 header: 'Модерация'
 
 requests:
-  edit_unpublished_mashup:
+  unpublished_mashup_get:
+    mark: 'M'
+    name: 'Получить все неопубликованные мэшапы'
+    link: '[GET] /moderation/unpublished_mashup/get'
+
+    response:
+      - id: 86
+        name: 'Пушной потрогал свечу'
+        authors: [571]
+        statuses: 0
+        albumId: -1
+        tracks: [9440, 9439]
+        tracksUrls: ['https://www.youtube.com/watch?v=pLKBvSTp7f4', 'https://www.youtube.com/watch?v=pLKBvSTp7f4']
+        statusesUrls: []
+        genres: ['рок', 'фолк']
+        publisherId: 571
+        publishTime: 1657794753
+
+  unpublished_mashup_edit:
     mark: 'M'
     name: 'Изменить неопубликованный мэшап'
-    link: '[POST] /moderation/edit_unpublished_mashup'
+    link: '[POST] /moderation/unpublished_mashup/edit'
     description:
       - 'Возвращает сериализованный неопубликованный мэшап.'
-      - '*`statuses` — список статусов в виде строк, в данный момент доступны следующие:'
+      - '* `statuses` — список статусов в виде строк, в данный момент доступны следующие:'
       - '  * `EXPLICIT` — присутствует ненормативная лексика'
       - '  * `MASHUP` — мэшап был опубликован в #mashup'
       - '  * `ALT` — мэшап был опубликован в \[alt]'
@@ -49,10 +67,10 @@ requests:
         - Если неопубликованный мэшап с указанным ID не был найден
         - Если привязанный плейлист не был найден
 
-  publish_unpublished_mashup:
+  unpublished_mashup_publish:
     mark: 'M'
     name: 'Публикация неопубликованного мэшапа'
-    link: '[POST] /moderation/publish_mashup?id=[ID]'
+    link: '[POST] /moderation/unpublished_mashup/publish?id=[ID]'
     description: 'Возвращает сериализованный мэшап.'
 
     regex:
@@ -83,10 +101,10 @@ requests:
       404:
         - Если неопубликованный мэшап с указанным ID не был найден
 
-  reject_unpublished_mashup:
+  unpublished_mashup_reject:
     mark: 'M'
     name: 'Отклонить неопубликованный мэшап'
-    link: '[POST] /moderation/reject_mashup'
+    link: '[POST] /moderation/unpublished_mashup/reject'
 
     body:
       id: 1

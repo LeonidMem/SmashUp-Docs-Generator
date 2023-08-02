@@ -1919,11 +1919,50 @@
 
 * **Модерация**:
   * <details>
-      <summary><b>[M]</b> Изменить неопубликованный мэшап: <code>[POST] /moderation/edit_unpublished_mashup</code></summary>
+      <summary><b>[M]</b> Получить все неопубликованные мэшапы: <code>[GET] /moderation/unpublished_mashup/get</code></summary>
+
+      <br>
+
+      ---
+
+      **Пример ответа:**
+      ```json
+      [
+          {
+              "id": 86,
+              "name": "Пушной потрогал свечу",
+              "authors": [
+                  571
+              ],
+              "statuses": 0,
+              "albumId": -1,
+              "tracks": [
+                  9440,
+                  9439
+              ],
+              "tracksUrls": [
+                  "https://www.youtube.com/watch?v=pLKBvSTp7f4",
+                  "https://www.youtube.com/watch?v=pLKBvSTp7f4"
+              ],
+              "statusesUrls": [],
+              "genres": [
+                  "рок",
+                  "фолк"
+              ],
+              "publisherId": 571,
+              "publishTime": 1657794753
+          }
+      ]
+      ```
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[M]</b> Изменить неопубликованный мэшап: <code>[POST] /moderation/unpublished_mashup/edit</code></summary>
 
       <br>Возвращает сериализованный неопубликованный мэшап.
 
-      *`statuses` — список статусов в виде строк, в данный момент доступны следующие:
+      * `statuses` — список статусов в виде строк, в данный момент доступны следующие:
 
         * `EXPLICIT` — присутствует ненормативная лексика
 
@@ -2021,7 +2060,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[M]</b> Публикация неопубликованного мэшапа: <code>[POST] /moderation/publish_mashup?id=[ID]</code></summary>
+      <summary><b>[M]</b> Публикация неопубликованного мэшапа: <code>[POST] /moderation/unpublished_mashup/publish?id=[ID]</code></summary>
 
       <br>Возвращает сериализованный мэшап.
 
@@ -2072,7 +2111,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[M]</b> Отклонить неопубликованный мэшап: <code>[POST] /moderation/reject_mashup</code></summary>
+      <summary><b>[M]</b> Отклонить неопубликованный мэшап: <code>[POST] /moderation/unpublished_mashup/reject</code></summary>
 
       <br>
 
