@@ -544,6 +544,24 @@
       ---
     </details>
   * <details>
+      <summary><b>[T]</b> Получить почту: <code>[GET] /user/get_email</code></summary>
+
+      <br>Возвращает почту пользователя, сделавшего этот запрос.
+
+      ---
+
+      **Пример запроса:** `/user/get_email`
+
+      **Пример ответа:**
+      ```json
+      {
+          "email": "admin@smashup.ru"
+      }
+      ```
+
+      ---
+    </details>
+  * <details>
       <summary><b>[T]</b> Изменить аватар: <code>[GET] /user/update_image</code></summary>
 
       <br>

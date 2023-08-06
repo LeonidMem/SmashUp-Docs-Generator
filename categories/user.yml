@@ -99,6 +99,18 @@ requests:
       404:
         - Если настройка с указанным битом не найдена
 
+
+  get_email:
+    mark: 'T'
+    name: 'Получить почту'
+    link: '[GET] /user/get_email'
+    description: 'Возвращает почту пользователя, сделавшего этот запрос.'
+
+    request: '/user/get_email'
+    response:
+      email: 'admin@smashup.ru'
+
+
   update_image:
     mark: 'T'
     name: 'Изменить аватар'
