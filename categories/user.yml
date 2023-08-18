@@ -162,6 +162,9 @@ requests:
     regex:
       ID: '{UUID RegEx}'
 
+    response:
+      email: 'new.email@google.com'
+
     codes:
       200:
         - Если всё хорошо и слава тебе, Господи
@@ -229,6 +232,9 @@ requests:
 
     regex:
       ID: '{UUID RegEx}'
+
+    response:
+      username: 'NewUsername'
 
     codes:
       200:
