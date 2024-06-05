@@ -1070,7 +1070,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Получить количество всех лайков: <code>[GET] /mashup/get_all_likes_paging?page=0</code></summary>
+      <summary><b>[T]</b> Получить количество всех лайков: <code>[GET] /mashup/get_likes_number</code></summary>
 
       <br>
 

@@ -178,7 +178,7 @@ requests:
   get_likes_number:
     mark: 'T'
     name: 'Получить количество всех лайков'
-    link: '[GET] /mashup/get_all_likes_paging?page=0'
+    link: '[GET] /mashup/get_likes_number'
 
     response:
       likes: 15
