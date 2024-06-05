@@ -1032,7 +1032,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Получить все лайки: <code>[GET] /mashup/get_all_likes</code></summary>
+      <summary><b>[T]</b> [DEPRECATED FOR REMOVAL] Получить все лайки: <code>[GET] /mashup/get_all_likes</code></summary>
 
       <br>
 
@@ -1046,6 +1046,41 @@
           5,
           8
       ]
+      ```
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[T]</b> Получить все лайки с пагинацией: <code>[GET] /mashup/get_all_likes_paging?page=0</code></summary>
+
+      <br>Размер одной страницы — 50 мэшапов
+
+      ---
+
+      **Пример ответа:**
+      ```json
+      [
+          1,
+          4,
+          5,
+          8
+      ]
+      ```
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[T]</b> Получить количество всех лайков: <code>[GET] /mashup/get_all_likes_paging?page=0</code></summary>
+
+      <br>
+
+      ---
+
+      **Пример ответа:**
+      ```json
+      {
+          "likes": 15
+      }
       ```
 
       ---
