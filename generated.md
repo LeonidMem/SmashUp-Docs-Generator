@@ -895,7 +895,8 @@
               "likes": 4,
               "streams": 29,
               "bitrate": 320044,
-              "duration": 1800000
+              "duration": 1800000,
+              "liked": true
           },
           {
               "id": 428,
@@ -920,7 +921,8 @@
               "likes": 1,
               "streams": 21,
               "bitrate": 128049,
-              "duration": 1000000
+              "duration": 1000000,
+              "liked": false
           }
       ]
       ```
@@ -1818,7 +1820,8 @@
               "likes": 4,
               "streams": 29,
               "bitrate": 320044,
-              "duration": 1800000
+              "duration": 1800000,
+              "liked": true
           },
           {
               "id": 428,
@@ -1840,7 +1843,8 @@
               "likes": 1,
               "streams": 21,
               "bitrate": 128049,
-              "duration": 1000000
+              "duration": 1000000,
+              "liked": false
           }
       ]
       ```

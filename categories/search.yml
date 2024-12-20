@@ -53,6 +53,7 @@ requests:
         streams: 29
         bitrate: 320044
         duration: 1800000
+        liked: true
       - id: 428
         name: 'everything you MFers talk about is 1.kla$'
         authors: ['MC Symon']
@@ -66,6 +67,7 @@ requests:
         streams: 21
         bitrate: 128049
         duration: 1000000
+        liked: false
 
     regex:
       SEARCH_QUERY: '.+{4,32}'
