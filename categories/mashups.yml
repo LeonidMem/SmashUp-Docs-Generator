@@ -175,7 +175,9 @@ requests:
     link: '[GET] /mashup/get_all_likes_paging?page=0'
     description: 'Размер одной страницы — 50 мэшапов'
 
-    response: [1, 4, 5, 8]
+    response:
+      total: 4
+      likes: [1, 4, 5, 8]
 
   get_likes_number:
     mark: 'T'
