@@ -2,7 +2,7 @@ header: 'Поиск'
 
 requests:
   tracks:
-    mark: 'T'
+#    mark: 'T'
     name: 'Треков'
     link: '[GET] /track/search?query=[SEARCH_QUERY]'
     description: 'Возвращает списком сериализованные треки, максимум 25.'
@@ -33,7 +33,7 @@ requests:
 
 
   mashups:
-    mark: 'T'
+#    mark: 'T'
     name: 'Мэшапов'
     link: '[GET] /mashup/search?query=[SEARCH_QUERY]'
     description: 'Возвращает списком сериализованные мэшапы, максимум 25.'
@@ -80,7 +80,7 @@ requests:
 
 
   playlists:
-    mark: 'T'
+#    mark: 'T'
     name: 'Плейлистов'
     link: '[GET] /playlist/search?query=[SEARCH_QUERY]'
     description: 'Возвращает списком сериализованные плейлисты, максимум 25.'
@@ -96,6 +96,7 @@ requests:
         mashups: []
         likes: 0
         streams: 0
+        liked: false
       - id: 482
         name: '1.kla$ные мэшапы'
         description: ''
@@ -106,6 +107,7 @@ requests:
                   479, 486, 132, 399, 463, 535, 585, 448, 469, 601, 611, 538, 584, 694, 772]
         likes: 1
         streams: 12
+        liked: true
 
     regex:
       SEARCH_QUERY: '.+{4,32}'
@@ -118,7 +120,7 @@ requests:
 
 
   users:
-    mark: 'T'
+#    mark: 'T'
     name: 'Пользователей'
     link: '[GET] /user/search?query=[SEARCH_QUERY]'
     description: 'Возвращает списком сериализованных пользователей, максимум 25.'

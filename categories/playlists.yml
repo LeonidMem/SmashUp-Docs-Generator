@@ -18,6 +18,7 @@ requests:
         mashups: [340, 648]
         likes: 0
         streams: 0
+        liked: true
       - id: 964
         name: 'Убиты, но не вами'
         description: ''
@@ -27,6 +28,7 @@ requests:
         mashups: [368, 509, 156, 114, 591, 377, 144, 376]
         likes: 1
         streams: 7
+        liked: false
 
     regex:
       IDS: '\d+(?:,\d+){0,99}'
@@ -61,6 +63,7 @@ requests:
       mashups: []
       likes: 0
       streams: 0
+      liked: false
 
     codes:
       200:
@@ -92,6 +95,7 @@ requests:
       mashups: []
       likes: 0
       streams: 0
+      liked: false
 
     regex:
       ID: '\d+'

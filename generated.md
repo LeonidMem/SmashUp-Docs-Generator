@@ -1221,7 +1221,8 @@
                   648
               ],
               "likes": 0,
-              "streams": 0
+              "streams": 0,
+              "liked": true
           },
           {
               "id": 964,
@@ -1243,7 +1244,8 @@
                   376
               ],
               "likes": 1,
-              "streams": 7
+              "streams": 7,
+              "liked": false
           }
       ]
       ```
@@ -1294,7 +1296,8 @@
           "backgroundColor": 16777215,
           "mashups": [],
           "likes": 0,
-          "streams": 0
+          "streams": 0,
+          "liked": false
       }
       ```
 
@@ -1341,7 +1344,8 @@
           "backgroundColor": 16777215,
           "mashups": [],
           "likes": 0,
-          "streams": 0
+          "streams": 0,
+          "liked": false
       }
       ```
 
@@ -1742,7 +1746,7 @@
 
 * **Поиск**:
   * <details>
-      <summary><b>[T]</b> Треков: <code>[GET] /track/search?query=[SEARCH_QUERY]</code></summary>
+      <summary>Треков: <code>[GET] /track/search?query=[SEARCH_QUERY]</code></summary>
 
       <br>Возвращает списком сериализованные треки, максимум 25.
 
@@ -1791,7 +1795,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Мэшапов: <code>[GET] /mashup/search?query=[SEARCH_QUERY]</code></summary>
+      <summary>Мэшапов: <code>[GET] /mashup/search?query=[SEARCH_QUERY]</code></summary>
 
       <br>Возвращает списком сериализованные мэшапы, максимум 25.
 
@@ -1866,7 +1870,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Плейлистов: <code>[GET] /playlist/search?query=[SEARCH_QUERY]</code></summary>
+      <summary>Плейлистов: <code>[GET] /playlist/search?query=[SEARCH_QUERY]</code></summary>
 
       <br>Возвращает списком сериализованные плейлисты, максимум 25.
 
@@ -1896,7 +1900,8 @@
               "backgroundColor": 16777215,
               "mashups": [],
               "likes": 0,
-              "streams": 0
+              "streams": 0,
+              "liked": false
           },
           {
               "id": 482,
@@ -1946,7 +1951,8 @@
                   772
               ],
               "likes": 1,
-              "streams": 12
+              "streams": 12,
+              "liked": true
           }
       ]
       ```
@@ -1958,7 +1964,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Пользователей: <code>[GET] /user/search?query=[SEARCH_QUERY]</code></summary>
+      <summary>Пользователей: <code>[GET] /user/search?query=[SEARCH_QUERY]</code></summary>
 
       <br>Возвращает списком сериализованных пользователей, максимум 25.
 
