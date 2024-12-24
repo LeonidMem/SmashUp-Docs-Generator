@@ -1,0 +1,26 @@
+header: 'Константы'
+
+requests:
+  genres:
+    name: 'Жанры'
+    link: '[GET] /const/genres'
+    description: 'Возвращает списком жанры.'
+
+    request: '/const/genres'
+    response:
+      - 'рок'
+      - 'рэп'
+      - 'поп'
+      - 'электро'
+      - 'классика'
+      - 'фонк'
+      - 'фолк'
+      - 'мемы'
+      - 'мегамэшап'
+      - 'cover'
+      - 'soundclown'
+      - 'rip'
+      - 'morph'
+      - 'ai'
+      - 'shitpost'
+

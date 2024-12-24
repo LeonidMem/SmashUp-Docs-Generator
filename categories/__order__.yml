@@ -10,3 +10,4 @@ order:
   - search
   - moderation
   - notifications
+  - const
