@@ -23,7 +23,7 @@ requests:
         link: 'https://music.yandex.ru/album/6983656/'
 
     regex:
-      SEARCH_QUERY: '.+{4,32}'
+      SEARCH_QUERY: '.+{2,32}'
 
     codes:
       200:
@@ -54,6 +54,7 @@ requests:
         bitrate: 320044
         duration: 1800000
         liked: true
+        inYourPlaylists: [15]
       - id: 428
         name: 'everything you MFers talk about is 1.kla$'
         authors: ['MC Symon']
@@ -68,9 +69,10 @@ requests:
         bitrate: 128049
         duration: 1000000
         liked: false
+        inYourPlaylists: []
 
     regex:
-      SEARCH_QUERY: '.+{4,32}'
+      SEARCH_QUERY: '.+{2,32}'
 
     codes:
       200:
@@ -110,7 +112,7 @@ requests:
         liked: true
 
     regex:
-      SEARCH_QUERY: '.+{4,32}'
+      SEARCH_QUERY: '.+{2,32}'
 
     codes:
       200:
@@ -139,7 +141,7 @@ requests:
         permissions: 76
 
     regex:
-      SEARCH_QUERY: '.+{4,32}'
+      SEARCH_QUERY: '.+{2,32}'
 
     codes:
       200:

@@ -106,8 +106,9 @@
   * Включена мульти-сессия: `1`
 * **Биты статусов мэшапов:**
   * Explicit: `0`
-  * #mashup: `1`
-  * \[alt]: `2`
+  * Бан ворды: `1`
+  * #mashup: `2`
+  * \[alt]: `3`
 
 ---
 
@@ -903,7 +904,10 @@
               "streams": 29,
               "bitrate": 320044,
               "duration": 1800000,
-              "liked": true
+              "liked": true,
+              "inYourPlaylists": [
+                  15
+              ]
           },
           {
               "id": 428,
@@ -929,7 +933,8 @@
               "streams": 21,
               "bitrate": 128049,
               "duration": 1000000,
-              "liked": false
+              "liked": false,
+              "inYourPlaylists": []
           }
       ]
       ```
@@ -1152,6 +1157,7 @@
               2
           ],
           "explicit": false,
+          "banWords": false,
           "albumId": -1,
           "tracks": [
               1,
@@ -1790,7 +1796,7 @@
 
       ---
 
-      **[SEARCH_QUERY] RegEx**: `.+{4,32}`
+      **[SEARCH_QUERY] RegEx**: `.+{2,32}`
 
       ---
     </details>
@@ -1835,7 +1841,10 @@
               "streams": 29,
               "bitrate": 320044,
               "duration": 1800000,
-              "liked": true
+              "liked": true,
+              "inYourPlaylists": [
+                  15
+              ]
           },
           {
               "id": 428,
@@ -1858,14 +1867,15 @@
               "streams": 21,
               "bitrate": 128049,
               "duration": 1000000,
-              "liked": false
+              "liked": false,
+              "inYourPlaylists": []
           }
       ]
       ```
 
       ---
 
-      **[SEARCH_QUERY] RegEx**: `.+{4,32}`
+      **[SEARCH_QUERY] RegEx**: `.+{2,32}`
 
       ---
     </details>
@@ -1959,7 +1969,7 @@
 
       ---
 
-      **[SEARCH_QUERY] RegEx**: `.+{4,32}`
+      **[SEARCH_QUERY] RegEx**: `.+{2,32}`
 
       ---
     </details>
@@ -2002,7 +2012,7 @@
 
       ---
 
-      **[SEARCH_QUERY] RegEx**: `.+{4,32}`
+      **[SEARCH_QUERY] RegEx**: `.+{2,32}`
 
       ---
     </details>

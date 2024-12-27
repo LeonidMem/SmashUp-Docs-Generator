@@ -25,6 +25,7 @@ requests:
         bitrate: 320044
         duration: 1800000
         liked: true
+        inYourPlaylists: [15]
       - id: 428
         name: 'everything you MFers talk about is 1.kla$'
         authors: ['MC Symon']
@@ -40,6 +41,7 @@ requests:
         bitrate: 128049
         duration: 1000000
         liked: false
+        inYourPlaylists: []
 
     regex:
       IDS: '\d+(?:,\d+){0, 99}'
@@ -205,6 +207,7 @@ requests:
       name: 'Мэшап без названия'
       authors: [1, 2]
       explicit: false
+      banWords: false
       albumId: -1
       tracks: [1, 2, 3]
       tracksUrls: ['https://www.youtube.com/watch?v=CQKxE8nBwSA', 'https://music.yandex.ru/album/6319802/track/46804521']
