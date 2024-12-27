@@ -45,7 +45,6 @@ requests:
     mark: 'T'
     name: 'Создать'
     link: '[POST] /playlist/create'
-    description: '**[ТЕСТ]** Пока нет проверки на наличие 10 плейлистов.'
 
     body:
       name: 'Какое-то имя'
@@ -132,7 +131,6 @@ requests:
     mark: 'T'
     name: 'Добавить мэшап'
     link: '[POST] /playlist/add_mashup?id=[PID]&mashup=[ID]'
-    description: '**[ТЕСТ]** Пока нет проверки на наличие 100 мэшапов.'
 
     regex:
       PID: '\d+'

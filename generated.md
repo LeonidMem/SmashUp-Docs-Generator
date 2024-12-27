@@ -1275,7 +1275,7 @@
   * <details>
       <summary><b>[T]</b> Создать: <code>[POST] /playlist/create</code></summary>
 
-      <br>**[ТЕСТ]** Пока нет проверки на наличие 10 плейлистов.
+      <br>
 
       ---
 
@@ -1396,7 +1396,7 @@
   * <details>
       <summary><b>[T]</b> Добавить мэшап: <code>[POST] /playlist/add_mashup?id=[PID]&mashup=[ID]</code></summary>
 
-      <br>**[ТЕСТ]** Пока нет проверки на наличие 100 мэшапов.
+      <br>
 
       ---
 
