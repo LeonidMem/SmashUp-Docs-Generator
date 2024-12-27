@@ -164,6 +164,7 @@ requests:
 
     response:
       email: 'new.email@google.com'
+      token: 'f74a8bec-5ab7-4fc9-8df5-14d11497f0f7'
 
     codes:
       200:
@@ -198,6 +199,9 @@ requests:
 
     regex:
       ID: '{UUID RegEx}'
+
+    response:
+      token: 'f74a8bec-5ab7-4fc9-8df5-14d11497f0f7'
 
     codes:
       200:
