@@ -25,17 +25,13 @@ requests:
     link: '[POST] /moderation/unpublished_mashup/edit'
     description:
       - 'Возвращает сериализованный неопубликованный мэшап.'
-      - '* `statuses` — список статусов в виде строк, в данный момент доступны следующие:'
-      - '  * `EXPLICIT` — присутствует ненормативная лексика'
-      - '  * `MASHUP` — мэшап был опубликован в #mashup'
-      - '  * `ALT` — мэшап был опубликован в \[alt]'
-      - '* Значения остальных полей JSON можно найти в `Мэшапы -> Отправить мэшап на премодерацию или опубликовать его`.'
+      - '* Значения полей JSON можно найти в `Мэшапы -> Отправить мэшап на премодерацию или опубликовать его`.'
 
     body:
       id: 1
       name: 'Мэшап без названия'
       authors: [1, 2]
-      statuses: ['MASHUP', 'EXPLICIT']
+      statuses: 5
       albumId: -1
       tracks: [1, 2, 3]
       tracksUrls: ['https://www.youtube.com/watch?v=CQKxE8nBwSA', 'https://music.yandex.ru/album/6319802/track/46804521']
@@ -45,7 +41,7 @@ requests:
     response:
       name: 'Мэшап без названия'
       authors: [1, 2]
-      statuses: ['MASHUP', 'EXPLICIT']
+      statuses: 5
       albumId: -1
       tracks: [1, 2, 3]
       tracksUrls: ['https://www.youtube.com/watch?v=CQKxE8nBwSA', 'https://music.yandex.ru/album/6319802/track/46804521']
