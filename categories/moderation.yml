@@ -9,7 +9,8 @@ requests:
     response:
       - id: 86
         name: 'Пушной потрогал свечу'
-        authors: [571]
+        authors: 'mileon'
+        authorsIds: [571]
         statuses: 0
         albumId: -1
         tracks: [9440, 9439]
@@ -40,7 +41,8 @@ requests:
 
     response:
       name: 'Мэшап без названия'
-      authors: [1, 2]
+      authors: ['User1', 'User2']
+      authorsIds: [1, 2]
       statuses: 5
       albumId: -1
       tracks: [1, 2, 3]

@@ -2045,7 +2045,8 @@
           {
               "id": 86,
               "name": "Пушной потрогал свечу",
-              "authors": [
+              "authors": "mileon",
+              "authorsIds": [
                   571
               ],
               "statuses": 0,
@@ -2126,6 +2127,10 @@
       {
           "name": "Мэшап без названия",
           "authors": [
+              "User1",
+              "User2"
+          ],
+          "authorsIds": [
               1,
               2
           ],
