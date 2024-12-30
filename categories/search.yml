@@ -35,10 +35,10 @@ requests:
   tracks_yandex:
     mark: 'T'
     name: 'Треков в Яндекс.Музыке'
-    link: '[GET] /track/search/yandex?query=[SEARCH_QUERY]'
+    link: '[GET] /track/search/yandex_music?query=[SEARCH_QUERY]'
     description: 'Возвращает списком сериализованные треки в формате Яндекс.Музыки, максимум 25.'
 
-    request: '/track/search/yandex?query=СЛАВА%20КПСС'
+    request: '/track/search/yandex_music?query=СЛАВА%20КПСС'
     response:
       - id: 73131625
         authors:

@@ -1869,7 +1869,7 @@
       ---
     </details>
   * <details>
-      <summary><b>[T]</b> Треков в Яндекс.Музыке: <code>[GET] /track/search/yandex?query=[SEARCH_QUERY]</code></summary>
+      <summary><b>[T]</b> Треков в Яндекс.Музыке: <code>[GET] /track/search/yandex_music?query=[SEARCH_QUERY]</code></summary>
 
       <br>Возвращает списком сериализованные треки в формате Яндекс.Музыки, максимум 25.
 
@@ -1883,7 +1883,7 @@
 
       ---
 
-      **Пример запроса:** `/track/search/yandex?query=СЛАВА%20КПСС`
+      **Пример запроса:** `/track/search/yandex_music?query=СЛАВА%20КПСС`
 
       **Пример ответа:**
       ```json
