@@ -1619,7 +1619,7 @@
       [
           {
               "id": 12659818,
-              "name": "ЧУДОВИЩЕ ПОГУБИВШЕЕ МИР",
+              "title": "ЧУДОВИЩЕ ПОГУБИВШЕЕ МИР",
               "coverUri": "avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%",
               "tracks": [
                   {
@@ -1633,7 +1633,7 @@
                       "albums": [
                           {
                               "id": 12659818,
-                              "name": "ЧУДОВИЩЕ ПОГУБИВШЕЕ МИР",
+                              "title": "ЧУДОВИЩЕ ПОГУБИВШЕЕ МИР",
                               "coverUri": "avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%"
                           }
                       ],
@@ -1650,7 +1650,7 @@
                       "albums": [
                           {
                               "id": 12659818,
-                              "name": "ЧУДОВИЩЕ ПОГУБИВШЕЕ МИР",
+                              "title": "ЧУДОВИЩЕ ПОГУБИВШЕЕ МИР",
                               "coverUri": "avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%"
                           }
                       ],
@@ -1902,7 +1902,7 @@
               "albums": [
                   {
                       "id": 12659818,
-                      "name": "ЧУДОВИЩЕ ПОГУБИВШЕЕ МИР",
+                      "title": "ЧУДОВИЩЕ ПОГУБИВШЕЕ МИР",
                       "coverUri": "avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%"
                   }
               ],
@@ -1919,7 +1919,7 @@
               "albums": [
                   {
                       "id": 12659818,
-                      "name": "ЧУДОВИЩЕ ПОГУБИВШЕЕ МИР",
+                      "title": "ЧУДОВИЩЕ ПОГУБИВШЕЕ МИР",
                       "coverUri": "avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%"
                   }
               ],
