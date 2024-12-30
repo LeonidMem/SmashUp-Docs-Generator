@@ -102,6 +102,41 @@ requests:
       409:
         - Если указанный альбом уже есть в базе данных
 
+  get_yandex_music:
+    mark: 'M'
+    name: 'Получить с Яндекс.Музыки'
+    link: '[GET] /track/get/yandex_music?id=[IDS]'
+
+    request: '/track/get/yandex_music?id=73131625,12659818'
+    response:
+      - id: 73131625
+        authors:
+          - name: 'СЛАВА КПСС'
+            coverUri: avatars.yandex.net/get-music-content/9838169/801077fa.p.4622988/%%
+        albums:
+          - id: 12659818
+            title: 'ЧУДОВИЩЕ ПОГУБИВШЕЕ МИР'
+            coverUri: 'avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%'
+        name: 'Чудовище погубившее мир'
+      - id: 72939304
+        authors:
+          - name: 'СЛАВА КПСС'
+            coverUri: avatars.yandex.net/get-music-content/9838169/801077fa.p.4622988/%%
+        albums:
+          - id: 12659818
+            title: 'ЧУДОВИЩЕ ПОГУБИВШЕЕ МИР'
+            coverUri: 'avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%'
+        name: 'Чучело'
+
+    regex:
+      IDS: '\d+(?:,\d+){0, 99}'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      400:
+        - Если некорректно указаны ID
+
   upload_youtube_video:
     mark: 'V'
     name: 'Опубликовать с видео YouTube'

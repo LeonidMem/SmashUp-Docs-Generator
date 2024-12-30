@@ -1725,6 +1725,69 @@
       ---
     </details>
   * <details>
+      <summary><b>[M]</b> Получить с Яндекс.Музыки: <code>[GET] /track/get/yandex_music?id=[IDS]</code></summary>
+
+      <br>
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `400 Bad Request`
+        * Если некорректно указаны ID
+
+      ---
+
+      **Пример запроса:** `/track/get/yandex_music?id=73131625,12659818`
+
+      **Пример ответа:**
+      ```json
+      [
+          {
+              "id": 73131625,
+              "authors": [
+                  {
+                      "name": "СЛАВА КПСС",
+                      "coverUri": "avatars.yandex.net/get-music-content/9838169/801077fa.p.4622988/%%"
+                  }
+              ],
+              "albums": [
+                  {
+                      "id": 12659818,
+                      "title": "ЧУДОВИЩЕ ПОГУБИВШЕЕ МИР",
+                      "coverUri": "avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%"
+                  }
+              ],
+              "name": "Чудовище погубившее мир"
+          },
+          {
+              "id": 72939304,
+              "authors": [
+                  {
+                      "name": "СЛАВА КПСС",
+                      "coverUri": "avatars.yandex.net/get-music-content/9838169/801077fa.p.4622988/%%"
+                  }
+              ],
+              "albums": [
+                  {
+                      "id": 12659818,
+                      "title": "ЧУДОВИЩЕ ПОГУБИВШЕЕ МИР",
+                      "coverUri": "avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%"
+                  }
+              ],
+              "name": "Чучело"
+          }
+      ]
+      ```
+
+      ---
+
+      **[IDS] RegEx**: `\d+(?:,\d+){0, 99}`
+
+      ---
+    </details>
+  * <details>
       <summary><b>[V]</b> Опубликовать с видео YouTube: <code>[POST] /track/upload/youtube/video</code></summary>
 
       <br>Возвращает сериализованный трек.
