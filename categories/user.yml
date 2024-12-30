@@ -83,7 +83,7 @@ requests:
     link: '[POST] /user/change_setting?bit=[BIT]&value=[VALUE]'
     description: 'Изменяет настройки пользователя, сделавшего этот запрос, и возвращает новое значение бит-маски.'
 
-    request: '/user/get_settings'
+    request: '/user/change_settings?bit=0&value=1'
     response:
       settings: 1
 

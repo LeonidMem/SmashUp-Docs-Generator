@@ -527,7 +527,7 @@
 
       ---
 
-      **Пример запроса:** `/user/get_settings`
+      **Пример запроса:** `/user/change_settings?bit=0&value=1`
 
       **Пример ответа:**
       ```json
