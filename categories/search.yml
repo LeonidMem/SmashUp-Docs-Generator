@@ -46,6 +46,7 @@ requests:
             coverUri: avatars.yandex.net/get-music-content/9838169/801077fa.p.4622988/%%
         albums:
           - id: 12659818
+            name: 'ЧУДОВИЩЕ ПОГУБИВШЕЕ МИР'
             coverUri: 'avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%'
         name: 'Чудовище погубившее мир'
       - id: 72939304
@@ -54,6 +55,7 @@ requests:
             coverUri: avatars.yandex.net/get-music-content/9838169/801077fa.p.4622988/%%
         albums:
           - id: 12659818
+            name: 'ЧУДОВИЩЕ ПОГУБИВШЕЕ МИР'
             coverUri: 'avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%'
         name: 'Чучело'
 
