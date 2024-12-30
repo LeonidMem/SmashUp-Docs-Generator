@@ -2380,3 +2380,23 @@
 
       ---
     </details>
+  * <details>
+      <summary>Компиляции: <code>[GET] /const/compilations</code></summary>
+
+      <br>Возвращает списком компиляции для главной страницы.
+
+      ---
+
+      **Пример запроса:** `/const/compilations`
+
+      **Пример ответа:**
+      ```json
+      [
+          1,
+          2,
+          3
+      ]
+      ```
+
+      ---
+    </details>

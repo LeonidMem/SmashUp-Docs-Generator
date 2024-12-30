@@ -24,3 +24,13 @@ requests:
       - 'ai'
       - 'shitpost'
 
+  compilations:
+    name: 'Компиляции'
+    link: '[GET] /const/compilations'
+    description: 'Возвращает списком компиляции для главной страницы.'
+
+    request: '/const/compilations'
+    response:
+      - 1
+      - 2
+      - 3
