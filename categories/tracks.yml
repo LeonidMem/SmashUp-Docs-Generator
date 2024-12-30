@@ -37,7 +37,7 @@ requests:
     mark: 'V'
     name: 'Превью публикации с Яндекс.Музыки'
     link: '[POST] /track/preview/yandex_music?albumId=[ID]'
-    description: 'Возвращает сериализованный альбом в формате Яндекс.Музыки.'
+    description: 'Возвращает сериализованный альбом в формате Яндекс.Музыки или пустой объект, если этот альбом уже загружен.'
 
     request: '/track/preview/yandex_music?albumId=12659818'
     response:
