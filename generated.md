@@ -1606,6 +1606,61 @@
       ---
     </details>
   * <details>
+      <summary><b>[V]</b> Превью публикации с Яндекс.Музыки: <code>[POST] /track/preview/yandex_music?albumId=[ID]</code></summary>
+
+      <br>Возвращает сериализованный альбом в формате Яндекс.Музыки.
+
+      ---
+
+      **Пример запроса:** `/track/preview/yandex_music?albumId=12659818`
+
+      **Пример ответа:**
+      ```json
+      [
+          {
+              "id": 12659818,
+              "coverUri": "avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%",
+              "tracks": [
+                  {
+                      "id": 73131625,
+                      "authors": [
+                          {
+                              "name": "СЛАВА КПСС",
+                              "coverUri": "avatars.yandex.net/get-music-content/9838169/801077fa.p.4622988/%%"
+                          }
+                      ],
+                      "albums": [
+                          {
+                              "id": 12659818,
+                              "coverUri": "avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%"
+                          }
+                      ],
+                      "name": "Чудовище погубившее мир"
+                  },
+                  {
+                      "id": 72939304,
+                      "authors": [
+                          {
+                              "name": "СЛАВА КПСС",
+                              "coverUri": "avatars.yandex.net/get-music-content/9838169/801077fa.p.4622988/%%"
+                          }
+                      ],
+                      "albums": [
+                          {
+                              "id": 12659818,
+                              "coverUri": "avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%"
+                          }
+                      ],
+                      "name": "Чучело"
+                  }
+              ]
+          }
+      ]
+      ```
+
+      ---
+    </details>
+  * <details>
       <summary><b>[V]</b> Опубликовать с Яндекс.Музыки: <code>[POST] /track/upload/yandex_music?albumId=[ID]</code></summary>
 
       <br>Возвращает списком сериализованные треки.
@@ -1626,7 +1681,7 @@
 
       ---
 
-      **Пример запроса:** `/track/upload/yandex_music?id=4712222`
+      **Пример запроса:** `/track/upload/yandex_music?albumId=4712222`
 
       **Пример ответа:**
       ```json
@@ -1803,6 +1858,67 @@
               "imageUrl": "83",
               "backgroundColor": 16777215,
               "link": "https://music.yandex.ru/album/6983656/"
+          }
+      ]
+      ```
+
+      ---
+
+      **[SEARCH_QUERY] RegEx**: `.+{2,32}`
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[T]</b> Треков в Яндекс.Музыке: <code>[GET] /track/search/yandex?query=[SEARCH_QUERY]</code></summary>
+
+      <br>Возвращает списком сериализованные треки в формате Яндекс.Музыки, максимум 25.
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `400 Bad Request`
+        * Если указан некорректный поисковый запрос
+
+      ---
+
+      **Пример запроса:** `/track/search/yandex?query=СЛАВА%20КПСС`
+
+      **Пример ответа:**
+      ```json
+      [
+          {
+              "id": 73131625,
+              "authors": [
+                  {
+                      "name": "СЛАВА КПСС",
+                      "coverUri": "avatars.yandex.net/get-music-content/9838169/801077fa.p.4622988/%%"
+                  }
+              ],
+              "albums": [
+                  {
+                      "id": 12659818,
+                      "coverUri": "avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%"
+                  }
+              ],
+              "name": "Чудовище погубившее мир"
+          },
+          {
+              "id": 72939304,
+              "authors": [
+                  {
+                      "name": "СЛАВА КПСС",
+                      "coverUri": "avatars.yandex.net/get-music-content/9838169/801077fa.p.4622988/%%"
+                  }
+              ],
+              "albums": [
+                  {
+                      "id": 12659818,
+                      "coverUri": "avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%"
+                  }
+              ],
+              "name": "Чучело"
           }
       ]
       ```

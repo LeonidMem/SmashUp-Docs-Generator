@@ -32,6 +32,41 @@ requests:
         - Если указан некорректный поисковый запрос
 
 
+  tracks_yandex:
+    mark: 'T'
+    name: 'Треков в Яндекс.Музыке'
+    link: '[GET] /track/search/yandex?query=[SEARCH_QUERY]'
+    description: 'Возвращает списком сериализованные треки в формате Яндекс.Музыки, максимум 25.'
+
+    request: '/track/search/yandex?query=СЛАВА%20КПСС'
+    response:
+      - id: 73131625
+        authors:
+          - name: 'СЛАВА КПСС'
+            coverUri: avatars.yandex.net/get-music-content/9838169/801077fa.p.4622988/%%
+        albums:
+          - id: 12659818
+            coverUri: 'avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%'
+        name: 'Чудовище погубившее мир'
+      - id: 72939304
+        authors:
+          - name: 'СЛАВА КПСС'
+            coverUri: avatars.yandex.net/get-music-content/9838169/801077fa.p.4622988/%%
+        albums:
+          - id: 12659818
+            coverUri: 'avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%'
+        name: 'Чучело'
+
+    regex:
+      SEARCH_QUERY: '.+{2,32}'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      400:
+        - Если указан некорректный поисковый запрос
+
+
   mashups:
 #    mark: 'T'
     name: 'Мэшапов'

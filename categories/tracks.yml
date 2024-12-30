@@ -33,13 +33,41 @@ requests:
         - Если некорректно указаны ID
         - Если хотя бы один из указанных ID не является ID какого-либо трека
 
+  preview_yandex_music:
+    mark: 'V'
+    name: 'Превью публикации с Яндекс.Музыки'
+    link: '[POST] /track/preview/yandex_music?albumId=[ID]'
+    description: 'Возвращает сериализованный альбом в формате Яндекс.Музыки.'
+
+    request: '/track/preview/yandex_music?albumId=12659818'
+    response:
+      - id: 12659818
+        coverUri: 'avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%'
+        tracks:
+          - id: 73131625
+            authors:
+              - name: 'СЛАВА КПСС'
+                coverUri: avatars.yandex.net/get-music-content/9838169/801077fa.p.4622988/%%
+            albums:
+              - id: 12659818
+                coverUri: 'avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%'
+            name: 'Чудовище погубившее мир'
+          - id: 72939304
+            authors:
+              - name: 'СЛАВА КПСС'
+                coverUri: avatars.yandex.net/get-music-content/9838169/801077fa.p.4622988/%%
+            albums:
+              - id: 12659818
+                coverUri: 'avatars.yandex.net/get-music-content/2355477/81cb9be3.a.12659818-1/%%'
+            name: 'Чучело'
+
   upload_yandex_music:
     mark: 'V'
     name: 'Опубликовать с Яндекс.Музыки'
     link: '[POST] /track/upload/yandex_music?albumId=[ID]'
     description: 'Возвращает списком сериализованные треки.'
 
-    request: '/track/upload/yandex_music?id=4712222'
+    request: '/track/upload/yandex_music?albumId=4712222'
     response:
       - id: 1
         name: 'Я ПЫЛЬ'
