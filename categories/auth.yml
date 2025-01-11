@@ -19,7 +19,7 @@ requests:
       token: 'd404f899-eac6-4355-a651-1a8daef84550'
 
     regex:
-      username: '(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{4,32}$)(?!^\d+$)^.+$'
+      username: '(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{2,32}$)(?!^\d+$)^.+$'
       password: '[a-zA-Z0-9-_=+()*&^%$#@!]{8,32}'
 
     codes:
@@ -54,7 +54,7 @@ requests:
       token: 'd404f899-eac6-4355-a651-1a8daef84550'
 
     regex:
-      username: '(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{4,32}$)(?!^\d+$)^.+$'
+      username: '(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{2,32}$)(?!^\d+$)^.+$'
       password: '[a-zA-Z0-9-_=+()*&^%$#@!]{8,32}'
 
     codes:

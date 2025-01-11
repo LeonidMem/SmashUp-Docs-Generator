@@ -18,7 +18,7 @@ requests:
 
     regex:
       ID: '\d+'
-      USERNAME: '(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{4,32}$)(?!^\d+$)^.+$'
+      USERNAME: '(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{2,32}$)(?!^\d+$)^.+$'
       TOKEN: '[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}'
 
     contract: 'Only one of parameters (id, username, token) must be specified'
